@@ -1,0 +1,16 @@
+{% extends "base.html.twig" %}
+
+{% block body %}
+
+    <div id="Forum">
+        <h1>Liste des sujets</h1>
+        {% for comment in comments %}
+            <div class="subject">
+                    <a href="{{path("comment", {'id': comment.Id}) }}">{{comment.Title}}</a>
+                    <p>{{comment.Content}}</p>
+                    <p> {{comment.createdAt | date('d/m/Y') }} </p>
+            </div>    
+        {% endfor %}
+    </div>
+
+{% endblock %}

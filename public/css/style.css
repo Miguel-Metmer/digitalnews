@@ -274,25 +274,20 @@ nav a:hover
 #Forum  h1
 {
     text-align: center;
-    color: royalblue;
-}
-
-#Forum_List
-{
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    border-top: 3px solid royalblue;
+    color: rgb(102, 161, 216);
+    border-bottom: 4px dashed grey;
+    padding-bottom: 2%;
+    margin-bottom: 0;
 }
 
 .subject
 {
-    border-bottom: 1px dashed grey;
+    border-bottom: 4px dashed grey;
 }
 
 .subject a
 {
-    color: black;
+    color: rgb(102, 161, 216);
     text-decoration: none;
     font-size: 2.0em;
 }
