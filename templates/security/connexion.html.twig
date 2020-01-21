@@ -1,0 +1,19 @@
+{% extends "base.html.twig" %}
+
+
+{% block menu %}
+    <li><a href="{{ path("security_registration") }}"> Inscription </a></li>
+    <li><a href="{{ path("security_connexion") }}"> Connexion </a></li>
+{% endblock %}
+
+{% block body %}
+    
+    <img src="http://cartec-lille.yo.fr/wp/wp-content/uploads/2018/07/240_F_34225194_ILQBHFatdskQx5kvgwuzuLECt4QWs550.jpg" alt="Une image" id="Register_Background">
+
+    {{ form_start(form) }}
+    {{ form_widget(form) }}
+    <div id="Register_Button">
+        <button type="submit"> Se connecter </button>
+    </div>
+    {{ form_end(form)}}
+{% endblock %}

@@ -1,0 +1,19 @@
+{% extends "base.html.twig" %}
+
+
+{% block menu %}
+    <li><a href="{{ path("security_registration") }}"> Inscription </a></li>
+    <li><a href="{{ path("security_connexion") }}"> Connexion </a></li>
+{% endblock %}
+
+{% block body %}
+    
+    <img src="https://abcnatation.fr/files/club-100262137/up/ob_f23c73_inscriptions.png" alt="Une image" id="Register_Background">
+
+    {{ form_start(form) }}
+    {{ form_widget(form) }}
+    <div id="Register_Button">
+        <button type="submit"> S'inscrire </button>
+    </div>
+    {{ form_end(form)}}
+{% endblock %}
