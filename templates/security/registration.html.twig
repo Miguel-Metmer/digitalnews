@@ -10,8 +10,12 @@
     
     <img src="https://abcnatation.fr/files/club-100262137/up/ob_f23c73_inscriptions.png" alt="Une image" id="Register_Background">
 
-    {{ form_start(form) }}
-    {{ form_widget(form) }}
+    {{ form_start(form, {'attr': {'id': 'Registration'}}) }}
+
+    {{ form_row(form.Mail)}}
+    {{ form_row(form.Username)}}
+    {{ form_row(form.Password)}}
+
     <div id="Register_Button">
         <button type="submit"> S'inscrire </button>
     </div>

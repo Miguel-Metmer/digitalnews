@@ -11,6 +11,7 @@ use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
 use App\Entity\Users;
 use App\Form\RegistrationType;
+use App\Form\ConnexionType;
 
 class SecurityController extends AbstractController
 {
@@ -21,7 +22,7 @@ class SecurityController extends AbstractController
     {
         $user = new Users(); //On creer un utilisateur vide.
 
-        $form = $this->createForm(RegistrationType::class, $user); //On creer le formulaire, l'utilisateur nouvelement crée recevra les valeurs du formulaire.
+        $form = $this->createForm(RegistrationType::class, $user); //On creer le formulaire, l'utilisateur nouvellement crée recevra les valeurs du formulaire.
 
         $form->handleRequest($request); //Analyse de la requete
 
@@ -33,22 +34,24 @@ class SecurityController extends AbstractController
 
             $manager->persist($user);
             $manager->flush();
+
+            return $this->redirectToRoute('security_connexion'); //On redirige vers la page de connexion.
         }
 
         return $this->render("security/registration.html.twig", [
             'form' => $form->createView() // On passe en argument le paramètre form.
         ]);
+
     }
 
     /**
      * @Route("/connexion", name="security_connexion")
      */
-    public function Connexion()
+    public function Connexion(Request $request)
     {
         $user = new Users(); //On creer un utilisateur vide.
 
-        $form = $this->createForm(RegistrationType::class, $user); //On creer le formulaire, l'utilisateur nouvelement crée recevra les valeurs du formulaire.
-
+        $form = $this->createForm(ConnexionType::class, $user); //On creer le formulaire, l'utilisateur nouvelement crée recevra les valeurs du formulaire.
 
         return $this->render("security/connexion.html.twig", [
             'form' => $form->createView()

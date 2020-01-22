@@ -10,8 +10,10 @@
     
     <img src="http://cartec-lille.yo.fr/wp/wp-content/uploads/2018/07/240_F_34225194_ILQBHFatdskQx5kvgwuzuLECt4QWs550.jpg" alt="Une image" id="Register_Background">
 
-    {{ form_start(form) }}
-    {{ form_widget(form) }}
+    {{ form_start(form, {'attr': {'id' : 'Connexion'}, 'method': 'post', 'action': path('security_connexion') }) }}
+    {{ form_row(form.Username, {'attr' : {'placeholder' : 'Nom d\'utilisateur'}, 'full_name' : '_username'})}}
+    {{ form_row(form.Password, {'attr' : {'placeholder' : 'Mot de passe'}, 'full_name' : '_password'})}}
+
     <div id="Register_Button">
         <button type="submit"> Se connecter </button>
     </div>

@@ -6,18 +6,16 @@ use App\Entity\Users;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use Symfony\Component\Form\Extension\Core\Type\EmailType;
-use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 
-class RegistrationType extends AbstractType
+class ConnexionType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('Mail', EmailType::class, ['attr' => ['placeholder' => 'Adresse mail']])
-            ->add('Username', TextType::class, ['attr' => ['placeholder' => 'Nom d\'utilisateur']])
-            ->add('Password', PasswordType::class, ['attr' => ['placeholder' => 'Mot de passe']])
+            ->add('Username', TextType::class)
+            ->add('Password', PasswordType::class)
         ;
     }
 

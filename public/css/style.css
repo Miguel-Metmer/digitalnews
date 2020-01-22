@@ -293,14 +293,14 @@ nav a:hover
 }
 
 
-#registration
+#Registration, #Connexion
 {
     width: 50%;
     margin: auto;
     margin-top: 2%;
 }
 
-#registration div
+#Registration div, #Connexion div
 {
     display: flex;
     flex-direction: column;
@@ -310,14 +310,14 @@ nav a:hover
     text-align: center;
 }
 
-#registration div label
+#Registration div label, #Connexion div label
 {
     width: 25%;
     margin: auto;
     font-size: 2.0em;
 }
 
-#registration div input
+#Registration div input, #Connexion div input
 {
     width: 35%;
     margin: auto;
@@ -325,10 +325,10 @@ nav a:hover
     margin-bottom: 2%;
 }
 
-#Register_Button
+#Registration div  #Register_Button
 {
     margin: auto;
-    width: 50%;
+    width: 25%;
     text-align: center;
 }
 
