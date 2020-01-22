@@ -1,8 +1,12 @@
 {% extends "base.html.twig" %}
 
 {% block menu %}
-    <li><a href="{{ path("security_registration") }}"> Inscription </a></li>
-    <li><a href="{{ path("security_connexion") }}"> Connexion </a></li>
+    {% if not app.user %}
+        <li><a href="{{ path("security_registration") }}"> Inscription </a></li>
+        <li><a href="{{ path("security_connexion") }}"> Connexion </a></li>
+    {% else %}
+        <li><a href="{{ path("security_logout") }}"> Deconnexion </a></li>
+        {% endif %}
 {% endblock %}
 
 {% block body %}
@@ -18,4 +22,18 @@
         {% endfor %}
     </div>
 
+    {% if not app.user %}
+        <div id="Not_Connected">
+            <p>Veuillez vous <a href="{{path("security_connexion")}}"> connecter  </a>  pour creer un sujet</p>
+        </div>
+        
+    {% else %}
+        {{ form_start(form, {"attr": {"id": "Create"}}) }}
+        {{ form_row(form.Title) }}
+        {{ form_row(form.Content) }}
+        <div id="Create_Button">
+            <button type="submit"> Creer </button>
+        </div>
+        {{ form_end(form) }}
+    {% endif %}
 {% endblock %}

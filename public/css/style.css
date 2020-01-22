@@ -293,14 +293,20 @@ nav a:hover
 }
 
 
-#Registration, #Connexion
+#Registration, #Connexion, #Create
 {
     width: 50%;
     margin: auto;
     margin-top: 2%;
 }
 
-#Registration div, #Connexion div
+#Create
+{
+    border: 1px solid black;
+    box-shadow: 2px 3px 14px 3px;
+}
+
+#Registration div, #Connexion div, #Create div
 {
     display: flex;
     flex-direction: column;
@@ -310,14 +316,14 @@ nav a:hover
     text-align: center;
 }
 
-#Registration div label, #Connexion div label
+#Registration div label, #Connexion div label, #Create div label
 {
     width: 25%;
     margin: auto;
     font-size: 2.0em;
 }
 
-#Registration div input, #Connexion div input
+#Registration div input, #Connexion div input, #Create div input
 {
     width: 35%;
     margin: auto;
@@ -325,16 +331,18 @@ nav a:hover
     margin-bottom: 2%;
 }
 
-#Registration div  #Register_Button
+#Register_Button, #Create_Button
 {
     margin: auto;
     width: 25%;
     text-align: center;
 }
 
-#Register_Button button
+#Register_Button button, #Create_Button button
 {
     padding: 2% 4%;
+    width: 25%;
+    margin: auto;
 }
 
 #Register_Background
@@ -343,6 +351,34 @@ nav a:hover
     display: block;
     margin: auto;
 }
+
+#Create div textarea
+{
+    margin: auto;
+    width: 50%;
+    margin-bottom: 5%;
+    padding: 5%;
+    resize: none;
+}
+
+#Not_Connected
+{
+    width: 50%;
+    margin: auto;
+    text-align: center;
+}
+
+#Not_Connected p
+{
+    font-size: 2.0em;
+    font-weight: bold;
+}
+
+#Not_Connected a
+{
+    text-decoration: none;
+}
+
 /* -------------------------- */
 @media all and (max-width: 1400px)
 {

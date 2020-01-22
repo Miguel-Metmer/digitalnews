@@ -51,10 +51,21 @@ class SecurityController extends AbstractController
     {
         $user = new Users(); //On creer un utilisateur vide.
 
-        $form = $this->createForm(ConnexionType::class, $user); //On creer le formulaire, l'utilisateur nouvelement crée recevra les valeurs du formulaire.
+        $form = $this->createForm(ConnexionType::class, $user); //On creer le formulaire, l'utilisateur nouvellement crée recevra les valeurs du formulaire.
+
 
         return $this->render("security/connexion.html.twig", [
             'form' => $form->createView()
         ]);
+
+
+    }
+
+    /**
+     * @Route("/deconnexion", name="security_logout")
+     */
+    public function Logout()
+    {
+
     }
 }
