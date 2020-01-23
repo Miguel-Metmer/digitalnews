@@ -29,7 +29,7 @@ class NewsController extends AbstractController
         $subject = new Subjects(); //On creer un formulaire vide.
 
 
-        $form = $this->createForm(SubjectType::class, $subject); //On creer le form, $comment recevra les valeurs.
+        $form = $this->createForm(SubjectType::class, $subject); //On creer le form, $subject recevra les valeurs.
         $form->handleRequest($request); //Analyse de la requete
 
         if($form->isSubmitted() && $form->isValid()) // Si la requête à lieu, est que les infos sont valide
