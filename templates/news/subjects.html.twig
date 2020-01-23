@@ -1,0 +1,18 @@
+{% extends "base.html.twig"%}
+
+{% block menu %}
+
+    {% if not app.user %}
+        <li><a href="{{ path("security_registration") }}"> Inscription </a></li>
+        <li><a href="{{ path("security_connexion") }}"> Connexion </a></li>
+    {% else %}
+        <li><a href="{{ path("security_logout") }}"> Deconnexion </a></li>
+    {% endif %}
+{% endblock %}
+
+{% block body %}
+
+<h1>{{ subject.Title}}</h1>
+<p> {{subject.Content}} </p>
+<h2>{{ subject.createdAt | date("h/m/Y") }}</h2>
+{% endblock %}
