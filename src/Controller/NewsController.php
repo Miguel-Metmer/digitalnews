@@ -4,7 +4,7 @@ namespace App\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
-use App\Entity\Comments;
+use App\Entity\Subjects;
 use App\Form\SubjectType;
 use Symfony\Component\HttpFoundation\Request;
 use Doctrine\ORM\EntityManagerInterface;
@@ -24,21 +24,21 @@ class NewsController extends AbstractController
      */
     public function forum(Request $request, EntityManagerInterface $manager)
     {
-        $repo = $this->getDoctrine()->getRepository(Comments::class); //Variable qui va chercher dans la base de données contenant la classe Comments
+        $repo = $this->getDoctrine()->getRepository(Subjects::class); //Variable qui va chercher dans la base de données contenant la classe Comments
         
-        $comment = new Comments(); //On creer un formulaire vide.
+        $subject = new Subjects(); //On creer un formulaire vide.
 
 
-        $form = $this->createForm(SubjectType::class, $comment); //On creer le form, $comment recevra les valeurs.
+        $form = $this->createForm(SubjectType::class, $subject); //On creer le form, $subject recevra les valeurs.
         $form->handleRequest($request); //Analyse de la requete
 
         if($form->isSubmitted() && $form->isValid()) // Si la requête à lieu, est que les infos sont valide
         {
-            $comment->setTitle($comment->getTitle());
-            $comment->setContent($comment->getContent());
-            $comment->setCreatedAt(new \DateTime());
+            $subject->setTitle($subject->getTitle());
+            $subject->setContent($subject->getContent());
+            $subject->setCreatedAt(new \DateTime());
 
-            $manager->persist($comment);
+            $manager->persist($subject);
             $manager->flush();
             return $this->redirectToRoute('forum'); //On redirige vers la page du forum.
         }
