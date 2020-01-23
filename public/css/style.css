@@ -285,7 +285,7 @@ nav a:hover
     border-bottom: 4px dashed grey;
 }
 
-.subject a
+.subject p a
 {
     color: rgb(102, 161, 216);
     text-decoration: none;
@@ -303,7 +303,8 @@ nav a:hover
 #Create
 {
     border: 1px solid black;
-    box-shadow: 2px 3px 14px 3px;
+    box-shadow: 0px 0px 20px -10px;
+    margin-bottom: 10%;
 }
 
 #Registration div, #Connexion div, #Create div
@@ -343,6 +344,7 @@ nav a:hover
     padding: 2% 4%;
     width: 25%;
     margin: auto;
+    margin-bottom: 4%;
 }
 
 #Register_Background
