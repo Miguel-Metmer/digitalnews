@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
+use App\Entity\Users;
 use App\Entity\Subjects;
 use App\Form\SubjectType;
 use Symfony\Component\HttpFoundation\Request;
@@ -24,10 +25,7 @@ class NewsController extends AbstractController
      */
     public function forum(Request $request, EntityManagerInterface $manager)
     {
-        $repo = $this->getDoctrine()->getRepository(Subjects::class); //Variable qui va chercher dans la base de données contenant la classe Comments
-        
         $subject = new Subjects(); //On creer un formulaire vide.
-
 
         $form = $this->createForm(SubjectType::class, $subject); //On creer le form, $subject recevra les valeurs.
         $form->handleRequest($request); //Analyse de la requete
@@ -37,12 +35,14 @@ class NewsController extends AbstractController
             $subject->setTitle($subject->getTitle());
             $subject->setContent($subject->getContent());
             $subject->setCreatedAt(new \DateTime());
+            $subject->setUser($this->getUser());
 
             $manager->persist($subject);
             $manager->flush();
             return $this->redirectToRoute('forum'); //On redirige vers la page du forum.
         }
 
+        $repo = $this->getDoctrine()->getRepository(Subjects::class); //Variable qui va chercher dans la base de données contenant la classe Comments
         $subjects = $repo->findAll();
         return $this->render('news/forum.html.twig', [
             "subjects" => $subjects,
@@ -60,7 +60,6 @@ class NewsController extends AbstractController
 
         return $this->render('news/subjects.html.twig', [
             "subject" => $subjects,
-           
         ]);
     } 
 }
