@@ -36,6 +36,13 @@ class NewsManager
         })
         .then ( (data) => {
             this.ShowNews();
+            return data;
+        })
+        .then( (data) => {
+            let request = new Request();
+            request.open("POST", "/forum");
+            request.setRequestHeader("Content-Type", "application/json");
+            request.send(JSON.stringify(data));
         })
         .catch ( (err) => {
             console.log(err);

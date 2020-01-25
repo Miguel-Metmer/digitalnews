@@ -243,7 +243,7 @@ nav a:hover
 .article img
 {
     width: 80%;
-    height: 250px;
+    height: 220px;
     align-self: center;
     box-shadow: 2px 1px 2px 1px;
     border: 1px solid black;
@@ -359,8 +359,10 @@ nav a:hover
     margin: auto;
     width: 50%;
     margin-bottom: 5%;
-    padding: 5%;
+    /* padding: 5%; */
+    height: 100px;
     resize: none;
+    text-align: justify;
 }
 
 #Not_Connected
@@ -380,6 +382,71 @@ nav a:hover
 {
     text-decoration: none;
 }
+
+#Subject_Main
+{
+    text-align: center;
+}
+
+#Subject_Main h1
+{
+    width: 25%;
+    margin: auto;
+    margin-bottom: 5%;
+    margin-top: 5%;
+    color: rgb(102, 161, 216);
+}
+
+.comments_column
+{
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    border: 2px dashed grey;
+    width: 75%;
+    margin: 1% auto ;
+}
+
+
+#Comment_Create
+{
+    margin-top: 5%;
+}
+
+#Comment_Create form
+{
+    width: 50%;
+    margin: auto;
+}
+
+#Comment_Create form div
+{
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+}
+
+#Comment_Create form div label
+{
+    font-size: 2.0em;
+}
+
+#Comment_Create form div textarea
+{
+    height: 150px;
+    resize: none;
+}
+
+#Comment_Create form div button
+{
+    width: 50%;
+    height: 50px;
+    margin: auto;
+    margin-top: 2%;
+}
+
+
+
 
 /* -------------------------- */
 @media all and (max-width: 1400px)

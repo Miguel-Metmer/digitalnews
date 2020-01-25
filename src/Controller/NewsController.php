@@ -6,7 +6,9 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 use App\Entity\Users;
 use App\Entity\Subjects;
+use App\Entity\Comments;
 use App\Form\SubjectType;
+use App\Form\CommentType;
 use Symfony\Component\HttpFoundation\Request;
 use Doctrine\ORM\EntityManagerInterface;
 
@@ -17,6 +19,11 @@ class NewsController extends AbstractController
      */
     public function index()
     {
+        if (isset($news))
+        {
+            echo '<script>'. 'console.log('. $news .')'  .'</script>';
+        }
+
         return $this->render('news/index.html.twig');
     }
 
@@ -53,13 +60,34 @@ class NewsController extends AbstractController
     /**
      * @Route("/forum/{id}", name="subject")
      */
-    public function showForumSubjects($id)
+    public function showForumSubjects($id, Request $request, EntityManagerInterface $manager)
     {
         $repo = $this->getDoctrine()->getRepository(Subjects::class);
         $subjects = $repo->find($id);
 
+        $comments = new Comments();
+        $form = $this->createForm(CommentType::class, $comments);
+        $form->handleRequest($request);
+
+        if($form->isSubmitted() && $form->isValid())
+        {
+            $comments->setContent($comments->getContent());
+            $comments->setCreatedAt(new \DateTime());
+            $comments->setUser($this->getUser());
+            $comments->setSubject($subject = $repo->find($id));
+
+            $manager->persist($comments);
+            $manager->flush();
+            return $this->redirectToRoute('subject', ['id' => $id]);
+        }
+
+        $commentsRepo = $this->getDoctrine()->getRepository(Comments::class);
+        $comment = $commentsRepo->findby(['Subject' => $id]);
+
         return $this->render('news/subjects.html.twig', [
             "subject" => $subjects,
+            "comments" => $comment,
+            "form" => $form->createView()
         ]);
     } 
 }

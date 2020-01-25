@@ -4,7 +4,7 @@
         <meta charset="UTF-8"/>
         <meta name="viewport" content="initial-scale=1.0, user-scalable=ys"/>
         <title> News </title>
-        <link rel="stylesheet" href="{{ asset('css/style.css') }}"/>
+        <link rel="stylesheet" href="{{ asset('css/style.css?v=1') }}"/>
     </head>
     <body>
         <header>
@@ -13,7 +13,7 @@
         <nav>
             <ul>
                 {% block menu %}{% endblock %}
-                <li> <a href="/forum"> Forum </a></li>
+                <li> <a href="/forum?data=data"> Forum </a></li>
                 <li>
                     <a href="/" id="Actualité"> Actualités </a>
                     <ul> 
@@ -30,6 +30,7 @@
         {% block body %} {% endblock %}
     </body>
 
-    <script src=" {{ asset('js/NewsManager.js')}}"></script>
+    <script src="//code.jquery.com/jquery-1.12.0.min.js"></script>
     <script src="https://kit.fontawesome.com/a89d872ece.js" crossorigin="anonymous"></script> <!-- font awesome script-->
+    <script src=" {{ asset('js/NewsManager.js')}}"></script>
 </html>

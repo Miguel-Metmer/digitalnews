@@ -12,7 +12,43 @@
 
 {% block body %}
 
-<h1>{{ subject.Title}}</h1>
-<p> {{subject.Content}} </p>
-<h2>{{ subject.createdAt | date("h/m/Y") }}</h2>
+<section id="Comments">
+    <div id="Subject_Main">
+        <h1> Sujet : {{ subject.Title}}</h1>
+    </div>
+
+    <div class="comments_column">
+        <h2>{{ subject.getUser.username }}</h2>
+        <h3>{{ subject.createdAt | date("h/m/Y") }}</h3>
+        <p> {{ subject.Content}} </p>
+    </div>
+
+     {% for comment in comments %} 
+        <div class="comments_column">
+            <h2>{{ comment.getUser.username }}</h2>
+            <h3>{{ comment.createdAt | date("h/m/Y") }}</h3>
+            <p>{{ comment.Content }}</p>
+        </div>
+     {% endfor %} 
+
+</section>
+
+{% if not app.user %}
+
+    <div id="Not_Connected">
+        <p>Veuillez vous <a href="{{path("security_connexion")}}"> connecter  </a>  pour commenter</p>
+    </div>
+
+{% else %}
+
+<section id="Comment_Create">
+        {{ form_start(form) }}
+        {{ form_row(form.Content) }}
+        <div><button type="submit"> Envoyer </button></div>
+        {{ form_end(form) }}
+</section>
+
+{% endif %}
+
+
 {% endblock %}
