@@ -71,7 +71,7 @@ class NewsManager
 
             this.sourceChild[i].innerHTML = this.news[i].source.name;
 
-            this.titleChild[i].innerHTML = "<a href=" + this.news[i].url + ">" + this.news[i].title + "</a>";
+            this.titleChild[i].innerHTML = "<a href=" + this.news[i].url.substring(0,10) + ">" + this.news[i].title + "</a>";
             this.dateChild[i].innerHTML = "Date de publication : " + this.news[i].publishedAt;
             
             if(this.news[i].urlToImage == null)

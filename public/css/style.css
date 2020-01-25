@@ -213,6 +213,7 @@ nav a:hover
 .article
 {
     width: 30%;
+    margin-top: 2%;
 }
 
 .article h1
@@ -223,10 +224,10 @@ nav a:hover
 .article h2
 {
     font-size: 1.0em;
-    margin-top: 2%;
+    margin-top: 3%;
     margin-left: 2%;
     margin-right: 2%;
-    height: 50px;
+    height: 18%;
 }
 
 .article h2 a
