@@ -10,7 +10,7 @@ use Doctrine\Migrations\AbstractMigration;
 /**
  * Auto-generated Migration: Please modify to your needs!
  */
-final class Version20200125135637 extends AbstractMigration
+final class Version20200126183307 extends AbstractMigration
 {
     public function getDescription() : string
     {
@@ -22,10 +22,6 @@ final class Version20200125135637 extends AbstractMigration
         // this up() migration is auto-generated, please modify it to your needs
         $this->abortIf($this->connection->getDatabasePlatform()->getName() !== 'mysql', 'Migration can only be executed safely on \'mysql\'.');
 
-        $this->addSql('ALTER TABLE comments ADD CONSTRAINT FK_5F9E962AA76ED395 FOREIGN KEY (user_id) REFERENCES users (id)');
-        $this->addSql('ALTER TABLE comments ADD CONSTRAINT FK_5F9E962A23EDC87 FOREIGN KEY (subject_id) REFERENCES subjects (id)');
-        $this->addSql('CREATE INDEX IDX_5F9E962AA76ED395 ON comments (user_id)');
-        $this->addSql('CREATE INDEX IDX_5F9E962A23EDC87 ON comments (subject_id)');
         $this->addSql('ALTER TABLE subjects CHANGE user_id user_id INT DEFAULT NULL');
     }
 
@@ -34,10 +30,6 @@ final class Version20200125135637 extends AbstractMigration
         // this down() migration is auto-generated, please modify it to your needs
         $this->abortIf($this->connection->getDatabasePlatform()->getName() !== 'mysql', 'Migration can only be executed safely on \'mysql\'.');
 
-        $this->addSql('ALTER TABLE comments DROP FOREIGN KEY FK_5F9E962AA76ED395');
-        $this->addSql('ALTER TABLE comments DROP FOREIGN KEY FK_5F9E962A23EDC87');
-        $this->addSql('DROP INDEX IDX_5F9E962AA76ED395 ON comments');
-        $this->addSql('DROP INDEX IDX_5F9E962A23EDC87 ON comments');
         $this->addSql('ALTER TABLE subjects CHANGE user_id user_id INT DEFAULT NULL');
     }
 }

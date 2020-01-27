@@ -7,6 +7,7 @@ use Symfony\Component\Routing\Annotation\Route;
 use App\Entity\Users;
 use App\Entity\Subjects;
 use App\Entity\Comments;
+use App\Entity\News;
 use App\Form\SubjectType;
 use App\Form\CommentType;
 use Symfony\Component\HttpFoundation\Request;
@@ -19,12 +20,42 @@ class NewsController extends AbstractController
      */
     public function index()
     {
-        if (isset($news))
+        return $this->render('news/index.html.twig');
+    }
+
+    /**
+     * @Route("/archive", name="archive")
+     */
+    public function archive(EntityManagerInterface $manager)
+    {
+        $news = new News();
+        $apiNews = file_get_contents("https://newsapi.org/v2/top-headlines?country=fr&pageSize=40&apiKey=a727be71caab4420b0862dad9c71c661");
+        $data = json_decode($apiNews);
+
+        $server = $this->getDoctrine()->getRepository(News::class);
+
+        //Nouveautées globales
+        foreach ($data->articles as $article)
         {
-            echo '<script>'. 'console.log('. $news .')'  .'</script>';
+            if($server->findBy(["address" => $article->url]))
+            {
+                $news->setAddress($article->url);
+                $manager->flush();
+                $manager->clear();
+            }
+            else
+            {
+                $news->setAddress($article->url);
+                $manager->persist($news);
+                $manager->flush();
+                $manager->clear();
+            }
         }
 
-        return $this->render('news/index.html.twig');
+        $articles = $server->findAll();
+        return $this->render("news/archive.html.twig", [
+            "news" => $articles,
+        ]);
     }
 
     /**

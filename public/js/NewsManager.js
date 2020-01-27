@@ -34,21 +34,14 @@ class NewsManager
             this.StockData(data);
             return data;
         })
-        .then ( (data) => {
+        .then( (data) => {
             this.ShowNews();
             return data;
-        })
-        .then( (data) => {
-            let request = new Request();
-            request.open("POST", "/forum");
-            request.setRequestHeader("Content-Type", "application/json");
-            request.send(JSON.stringify(data));
         })
         .catch ( (err) => {
             console.log(err);
         })
     }
-
 
     StockData(data)
     {
@@ -71,7 +64,7 @@ class NewsManager
 
             this.sourceChild[i].innerHTML = this.news[i].source.name;
 
-            this.titleChild[i].innerHTML = "<a href=" + this.news[i].url.substring(0,10) + ">" + this.news[i].title + "</a>";
+            this.titleChild[i].innerHTML = "<a href=" + this.news[i].url + ">" + this.news[i].title + "</a>";
             this.dateChild[i].innerHTML = "Date de publication : " + this.news[i].publishedAt;
             
             if(this.news[i].urlToImage == null)

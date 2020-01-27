@@ -7,6 +7,7 @@ body
 {
     margin: 0;
     padding: 0;
+    position: relative;
 }
 header
 {
@@ -213,7 +214,7 @@ nav a:hover
 .article
 {
     width: 30%;
-    margin-top: 2%;
+    margin-top: 4%;
 }
 
 .article h1
@@ -446,6 +447,50 @@ nav a:hover
     margin-top: 2%;
 }
 
+footer
+{
+    margin-top: 5%;
+    background-color: #3a3a3a;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
+
+footer ul
+{
+    margin: 0;
+}
+
+footer ul li
+{
+    list-style: none;
+    padding: 0.5% 0;
+}
+
+footer ul li a
+{
+    text-decoration: none;
+    color: white;
+}
+
+#Archive
+{
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+}
+
+#Archive ul 
+{
+
+}
+
+#Archive ul li 
+{
+    width: 90%;
+    list-style: none;
+    margin-bottom: 1%;
+}
 
 
 
