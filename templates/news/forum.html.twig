@@ -2,37 +2,58 @@
 
 {% block menu %}
     {% if not app.user %}
-        <li><a href="{{ path("security_registration") }}"> Inscription </a></li>
-        <li><a href="{{ path("security_connexion") }}"> Connexion </a></li>
+        <li class="nav-item">
+            <a id="Forum" class="nav-link" href="{{ path("security_registration") }}">Inscription</a>
+        </li>
+        <li class="nav-item">
+            <a id="Forum" class="nav-link" href="{{ path("security_connexion") }}">Connexion</a>
+        </li>
     {% else %}
-        <li><a href="{{ path("security_logout") }}"> Deconnexion </a></li>
+        <li class="nav-item">
+            <a id="Forum" class="nav-link" href="{{ path("security_logout") }}">Se déconnecter</a>
+        </li>
     {% endif %}
 {% endblock %}
 
 {% block body %}
 
-    <div id="Forum">
-        <h1>Liste des sujets</h1>
-        {% for subject in subjects %}
-            <div class="subject">
-                    <p> <a href="{{path("subject", {'id': subject.Id}) }}">{{subject.Title}}</a> -- {{subject.getUser.username}} -- {{subject.createdAt | date('d/m/Y') }}</p>
-                    <p>{{subject.Content}}</p>
-            </div>    
-        {% endfor %}
-    </div>
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th scope="col">Titre</th>
+                <th scope="col">Messages</th>
+                <th scope="col">Nom d'utilisateur</th>
+                <th scope="col">Date de création</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for subject in subjects %}
+                <tr class="table-light">
 
-    {% if not app.user %}
+                    <td><a href="{{path("subject", {'id': subject.Id}) }}">{{subject.Title}}</a></td>
+                    <td>{{ subject.Content|length > 50 ? subject.Content|slice(0, 50) ~ '...' : subject.Content}}</td>
+                    <td>{{ subject.getUser.username }}</td>
+                    <td>{{ subject.createdAt | date('d/m/Y') }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <div class="jumbotron forum-form">
+        {% if not app.user %}
         <div id="Not_Connected">
             <p>Veuillez vous <a href="{{path("security_connexion")}}"> connecter  </a>  pour creer un sujet</p>
         </div>
-        
-    {% else %}
-        {{ form_start(form, {"attr": {"id": "Create"}}) }}
-        {{ form_row(form.Title) }}
-        {{ form_row(form.Content) }}
-        <div id="Create_Button">
-            <button type="submit"> Creer </button>
-        </div>
-        {{ form_end(form) }}
-    {% endif %}
+            
+        {% else %}
+            {{ form_start(form) }}
+            {{ form_row(form.Title) }}
+            {{ form_row(form.Content) }}
+            <div class="button-form">
+                 <button type="submit" class="btn btn-success"> Creer </button>
+            </div>
+            {{ form_end(form) }}
+        {% endif %}
+    </div>
+    
 {% endblock %}

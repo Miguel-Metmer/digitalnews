@@ -2,20 +2,28 @@
 
 
 {% block menu %}
-    <li><a href="{{ path("security_registration") }}"> Inscription </a></li>
-    <li><a href="{{ path("security_connexion") }}"> Connexion </a></li>
+    <li class="nav-item">
+        <a id="Forum" class="nav-link" href="{{ path("security_registration") }}">Inscription</a>
+    </li>
+    <li class="nav-item">
+        <a id="Forum" class="nav-link" href="{{ path("security_connexion") }}">Connexion</a>
+    </li>
 {% endblock %}
 
 {% block body %}
     
-    <img src="http://cartec-lille.yo.fr/wp/wp-content/uploads/2018/07/240_F_34225194_ILQBHFatdskQx5kvgwuzuLECt4QWs550.jpg" alt="Une image" id="Register_Background">
+    <div class="jumbotron forum-form">
+         <img src="http://cartec-lille.yo.fr/wp/wp-content/uploads/2018/07/240_F_34225194_ILQBHFatdskQx5kvgwuzuLECt4QWs550.jpg" alt="Une image" id="Register_Background">
 
-    {{ form_start(form, {'attr': {'id' : 'Connexion'}, 'method': 'post', 'action': path('security_connexion') }) }}
-    {{ form_row(form.Username, {'attr' : {'placeholder' : 'Nom d\'utilisateur'}, 'full_name' : '_username'})}}
-    {{ form_row(form.Password, {'attr' : {'placeholder' : 'Mot de passe'}, 'full_name' : '_password'})}}
+        {{ form_start(form, {'attr': {'id' : 'Connexion'}, 'method': 'post', 'action': path('security_connexion') }) }}
+        {{ form_row(form.Username, {'attr' : {'placeholder' : 'Nom d\'utilisateur'}, 'full_name' : '_username'})}}
+        {{ form_row(form.Password, {'attr' : {'placeholder' : 'Mot de passe'}, 'full_name' : '_password'})}}
 
-    <div id="Register_Button">
-        <button type="submit"> Se connecter </button>
+        <div class="button-form">
+            <button type="submit" class="btn btn-success"> Se connecter </button>
+        </div>
+        {{ form_end(form)}}
     </div>
-    {{ form_end(form)}}
+
+   
 {% endblock %}

@@ -1,54 +1,54 @@
 {% extends "base.html.twig"%}
 
 {% block menu %}
-
     {% if not app.user %}
-        <li><a href="{{ path("security_registration") }}"> Inscription </a></li>
-        <li><a href="{{ path("security_connexion") }}"> Connexion </a></li>
+        <li class="nav-item">
+            <a id="Forum" class="nav-link" href="{{ path("security_registration") }}">Inscription</a>
+        </li>
+        <li class="nav-item">
+            <a id="Forum" class="nav-link" href="{{ path("security_connexion") }}">Connexion</a>
+        </li>
     {% else %}
-        <li><a href="{{ path("security_logout") }}"> Deconnexion </a></li>
+         <li class="nav-item">
+            <a id="Forum" class="nav-link" href="{{ path("security_logout") }}">Se déconnecter</a>
+        </li>
     {% endif %}
 {% endblock %}
 
 {% block body %}
 
-<section id="Comments">
-    <div id="Subject_Main">
-        <h1> Sujet : {{ subject.Title}}</h1>
-    </div>
-
-    <div class="comments_column">
-        <h2>{{ subject.getUser.username }}</h2>
-        <h3>{{ subject.createdAt | date("h/m/Y") }}</h3>
-        <p> {{ subject.Content}} </p>
-    </div>
-
-     {% for comment in comments %} 
-        <div class="comments_column">
-            <h2>{{ comment.getUser.username }}</h2>
-            <h3>{{ comment.createdAt | date("h/m/Y") }}</h3>
-            <p>{{ comment.Content }}</p>
+<div class="list-group">
+    <div class="list-group-item list-group-item-action flex-column align-items-start active">
+        <div class="d-flex w-100 justify-content-between">
+            <h5 class="mb-1">{{ subject.getUser.username }}</h5>
+            <small>{{ subject.createdAt | date("h/m/Y") }}</small>
         </div>
-     {% endfor %} 
-
-</section>
-
-{% if not app.user %}
-
-    <div id="Not_Connected">
-        <p>Veuillez vous <a href="{{path("security_connexion")}}"> connecter  </a>  pour commenter</p>
+        <p class="mb-1">{{ subject.Content }}</p>
     </div>
+  {% for comment in comments %} 
+    <div class="list-group-item list-group-item-action flex-column align-items-start active">
+        <div class="d-flex w-100 justify-content-between">
+            <h5 class="mb-1">{{ comment.getUser.username }}</h5>
+            <small>{{ comment.createdAt | date("h/m/Y") }}</small>
+        </div>
+        <p class="mb-1">{{ comment.Content }}</p>
+    </div>
+  {% endfor %} 
+</div>
 
-{% else %}
-
-<section id="Comment_Create">
-        {{ form_start(form) }}
-        {{ form_row(form.Content) }}
-        <div><button type="submit"> Envoyer </button></div>
-        {{ form_end(form) }}
-</section>
-
-{% endif %}
-
+<div class="jumbotron forum-form">
+    {% if not app.user %}
+        <div id="Not_Connected">
+            <p>Veuillez vous <a href="{{path("security_connexion")}}"> connecter  </a>  pour commenter</p>
+        </div>
+    {% else %}
+       {{ form_start(form, {"attr": {"id": "Lol"}}) }}
+            {{ form_row(form.Content) }}
+            <div class="button-form">
+                 <button type="submit" class="btn btn-success"> Creer </button>
+            </div>
+            {{ form_end(form) }}
+    {% endif %}
+</div>
 
 {% endblock %}

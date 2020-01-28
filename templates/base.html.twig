@@ -1,43 +1,36 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <meta charset="UTF-8"/>
-        <meta name="viewport" content="initial-scale=1.0, user-scalable=ys"/>
-        <title> News </title>
-        <link rel="stylesheet" href="{{ asset('css/style.css?v=1') }}"/>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>News</title>
+        <link href="https://stackpath.bootstrapcdn.com/bootswatch/4.4.1/sandstone/bootstrap.min.css" rel="stylesheet" integrity="sha384-ABdnjefqVzESm+f9z9hcqx2cvwvDNjfrwfW5Le9138qHCMGlNmWawyn/tt4jR4ba" crossorigin="anonymous">
+        <link rel="stylesheet" href="/css/test.css">
     </head>
     <body>
-        <header>
-            <h1> <a href="/" id="Icon"> Actualités & Informations </a> </h1>
-        </header>
-        <nav>
-            <ul>
-                {% block menu %}{% endblock %}
-                <li> <a href="/forum?data=data"> Forum </a></li>
-                <li>
-                    <a href="/" id="Actualité"> Actualités </a>
-                    <ul> 
-                        <li><i class="fas fa-long-arrow-alt-right"></i> </li>
-                        <li> <a href="/" id="Sport"> Sport </a> </li> 
-                        <li> <a href="/" id="Divertissement"> Divertissement </a> </li>
-                        <li> <a href="/" id="Santé"> Santé </a>   </li>
-                        <li> <a href="/" id="Science"> Sciences </a>  </li>
-                        <li> <a href="/" id="Technologie"> Technology </a>   </li>
-                    </ul>
-                </li>   
-            </ul>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+            <a id="Icon" class="navbar-brand" href="/">A&I</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarColor01">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item">
+                        <a id="Actualities" class="nav-link" href="/">Actualités</a>
+                    </li>
+                    <li class="nav-item">
+                        <a id="Forum" class="nav-link" href="/forum">Forum</a>
+                    </li>
+
+                    {% block menu %}{% endblock %}
+                </ul>
+            </div>
         </nav>
-        {% block body %} {% endblock %}
 
-        <footer>
-            <ul>
-                <li><a href="/archive"> Archives </a></li>
-            </ul>
-        </footer>
-
+        {% block body %}{% endblock %}
+        <script src="js/NewsManager.js"></script>
+        <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
+        <script src="//code.jquery.com/jquery-1.12.0.min.js">
     </body>
-
-    <script src="//code.jquery.com/jquery-1.12.0.min.js"></script>
-    <script src="https://kit.fontawesome.com/a89d872ece.js" crossorigin="anonymous"></script> <!-- font awesome script-->
-    <script src=" {{ asset('js/NewsManager.js')}}"></script>
 </html>

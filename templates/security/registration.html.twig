@@ -1,23 +1,29 @@
 {% extends "base.html.twig" %}
 
 
+
+
 {% block menu %}
-    <li><a href="{{ path("security_registration") }}"> Inscription </a></li>
-    <li><a href="{{ path("security_connexion") }}"> Connexion </a></li>
+    <li class="nav-item">
+        <a id="Forum" class="nav-link" href="{{ path("security_registration") }}">Inscription</a>
+    </li>
+    <li class="nav-item">
+        <a id="Forum" class="nav-link" href="{{ path("security_connexion") }}">Connexion</a>
+    </li>
 {% endblock %}
 
 {% block body %}
     
-    <img src="https://abcnatation.fr/files/club-100262137/up/ob_f23c73_inscriptions.png" alt="Une image" id="Register_Background">
-
-    {{ form_start(form, {'attr': {'id': 'Registration'}}) }}
-
-    {{ form_row(form.Mail)}}
-    {{ form_row(form.Username)}}
-    {{ form_row(form.Password)}}
-
-    <div id="Register_Button">
-        <button type="submit"> S'inscrire </button>
+    <div class="jumbotron forum-form">
+        <img src="https://abcnatation.fr/files/club-100262137/up/ob_f23c73_inscriptions.png" alt="Une image" id="Register_Background">
+        {{ form_start(form, {'attr': {'id': 'Registration'}}) }}
+        {{ form_row(form.Mail)}}
+        {{ form_row(form.Username)}}
+        {{ form_row(form.Password)}}
+        <div class="button-form">
+            <button type="submit" class="btn btn-success"> S'inscrire </button>
+        </div>
+        {{ form_end(form)}}
     </div>
-    {{ form_end(form)}}
+    
 {% endblock %}

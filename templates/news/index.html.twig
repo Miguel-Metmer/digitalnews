@@ -2,17 +2,27 @@
 
 {% block body %}
 
-<section id="Slider">
-    <figure>
-        <img src="{{ asset('images/background.jpg')  }}" alt="Background"/>
-        <figcaption>    
-            <h1> Actualités </h1> 
-        </figcaption>
-    </figure>
-</section>
-<section id="News"> 
-    <div id="Article_Box">
-    </div>
-</section>
+<div class="jumbotron news-list"> 
+    <ul class="nav nav-tabs">
+        <li class="nav-item">
+            <a class="nav-link"  id="Sports"  href="/">Sports</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link"  id="Health" href="/">Santé</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" id="Sciences"  href="/">Sciences</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" id="Technologies"  href="/">Technology</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" id="Entertainments" href="/">Divertissements</a>
+        </li>
+    </ul>
+</div> 
+
+
+
 
 {% endblock %}

@@ -3,9 +3,9 @@ class NewsManager
     constructor()
     {
         this.news = [];
-        this.Title = document.querySelector("#News .article h1");
-        this.Image = document.querySelector("#News .article img");
-        this.Text = document.querySelector("#News .article p");
+        this.Title = document.querySelector(".news card-header");
+        this.Image = document.querySelector(".news card-body img");
+        this.Text = document.querySelector(".news card-body card-text");
         
         this.articleBox = [];
         this.sourceChild = [];
@@ -15,13 +15,12 @@ class NewsManager
         this.contentChild = [];
 
         this.icon = document.getElementById("Icon");
-        this.actualité = document.getElementById("Actualité");
-        this.sport = document.getElementById("Sport");
-        this.divertissement = document.getElementById("Divertissement");
-        this.santé = document.getElementById("Santé");
-        this.science = document.getElementById("Science");
-        this.technologie = document.getElementById("Technologie");
-
+        this.actualité = document.getElementById("Actualities");
+        this.sport = document.getElementById("Sports");
+        this.divertissement = document.getElementById("Entertainments");
+        this.santé = document.getElementById("Health");
+        this.science = document.getElementById("Sciences");
+        this.technologie = document.getElementById("Technologies");
     }
 
     GetNews(url)
@@ -56,20 +55,30 @@ class NewsManager
         for (let i = 0; i < this.news.length; i++) 
         {
             this.articleBox[i] = document.createElement("div");
-            this.sourceChild[i] = document.createElement("h1");
-            this.titleChild[i] = document.createElement("h2");
-            this.imageChild[i] = document.createElement("img");
-            this.dateChild[i] = document.createElement("h3");
-            this.contentChild[i] = document.createElement("p");
+            this.articleBox[i].classList.add("card", "bg-light", "mb-3", "news");
 
-            this.sourceChild[i].innerHTML = this.news[i].source.name;
+            this.sourceChild[i] = document.createElement("div");
+            this.sourceChild[i].classList.add("card-header");
+            this.sourceChild[i].innerHTML = "<h1>" + this.news[i].source.name; + "</h1>"
+
+            this.titleChild[i] = document.createElement("h4");
+            this.titleChild[i].classList.add("card-title");
+
+            this.imageChild[i] = document.createElement("img");
+            this.imageChild[i].setAttribute("alt", "image manquante");
+            
+            this.contentChild[i] = document.createElement("p");
+            this.contentChild[i].classList.add("card-text");
+
+            this.dateChild[i] = document.createElement("h5");
+            this.dateChild[i].classList.add("card-footer");
 
             this.titleChild[i].innerHTML = "<a href=" + this.news[i].url + ">" + this.news[i].title + "</a>";
             this.dateChild[i].innerHTML = "Date de publication : " + this.news[i].publishedAt;
             
             if(this.news[i].urlToImage == null)
             {
-                this.imageChild[i].setAttribute("src", "../image/news.png");
+                this.imageChild[i].setAttribute("src", "/images/news.png");
             }
             else
             {
@@ -86,8 +95,7 @@ class NewsManager
                 this.contentChild[i].innerHTML =  this.news[i].description;
             }
 
-            document.querySelector("#News #Article_Box").appendChild(this.articleBox[i]);
-            this.articleBox[i].setAttribute("class", "article");
+            document.querySelector(".news-list").appendChild(this.articleBox[i]);
             this.articleBox[i].appendChild(this.sourceChild[i]);
             this.articleBox[i].appendChild(this.titleChild[i]);
             this.articleBox[i].appendChild(this.imageChild[i]);
