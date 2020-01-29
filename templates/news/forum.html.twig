@@ -28,8 +28,7 @@
         </thead>
         <tbody>
             {% for subject in subjects %}
-                <tr class="table-light">
-
+                <tr class="table-light forum-table">
                     <td><a href="{{path("subject", {'id': subject.Id}) }}">{{subject.Title}}</a></td>
                     <td>{{ subject.Content|length > 50 ? subject.Content|slice(0, 50) ~ '...' : subject.Content}}</td>
                     <td>{{ subject.getUser.username }}</td>

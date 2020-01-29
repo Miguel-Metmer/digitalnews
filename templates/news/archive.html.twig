@@ -2,12 +2,21 @@
 
 {% block body %}
 
-<section id="Archive">
-    <ul>
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th scope="col">Archives</th>
+        </tr>
+    </thead>
+    <tbody>
         {% for article in news %}
-            <li> <a href=" {{ article.address }}"> {{ article.address}} </a></li>
-        {% endfor %}
-    </ul>
-</section>
+            <tr class="table table-light archive-table">
+                {# <td> <a href=" {{ article.address }}"> {{ article.address|length > 60 ? article.address|slice(0, 60)~ '...' : article.address}} </td> #}
+                <td> <a href=" {{ article.address }}"> {{ article.address }} </a></td>
+            </tr>
+         {% endfor %}
+    </tbody>
+</table>
+
 
 {% endblock %}

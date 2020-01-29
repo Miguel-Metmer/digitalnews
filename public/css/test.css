@@ -93,3 +93,71 @@
 {
     background-color: white;
 }
+
+footer
+{
+    display: flex;
+    background-color: #3E3F3A;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
+
+footer ul
+{
+    padding: 0;
+    margin: 1%;
+}
+
+footer ul li 
+{
+    list-style-type: none;
+
+}
+
+@media all and (max-width : 900px)
+{
+    .news-list .card-header h1
+    {
+        font-size: 1.8em;
+    }
+    .news-list .card-title
+    {
+        font-size: 1.2em;
+    }
+    .news-list .news img
+    {
+        display: block;
+        width: 45vw;
+        height: 25vw;
+        margin: auto;
+        box-shadow: 1px 2px 15px 3px;
+    }
+
+    thead
+    {
+        display: none;
+    }
+    .forum-table
+    {
+        display: flex;
+        flex-direction: column;
+        text-align: center;
+        border-bottom: 1px solid black;
+    }
+    .archive-table
+    {
+        display: flex;
+        flex-direction: column;
+    }
+    .archive-table td
+    {
+        word-wrap: break-word;
+        word-break: break-all;
+        white-space: normal;
+    }
+    .archive-table td a
+    {
+        font-size: 1.0em;
+    }
+}
