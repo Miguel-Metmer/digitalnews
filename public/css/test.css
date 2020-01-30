@@ -112,7 +112,12 @@ footer ul
 footer ul li 
 {
     list-style-type: none;
+}
 
+
+.forum-table td:nth-child(even)
+{
+    background-color: rgb(239, 251, 246);
 }
 
 @media all and (max-width : 900px)
