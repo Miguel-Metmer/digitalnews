@@ -29,7 +29,7 @@
         <tbody>
             {% for subject in subjects %}
                 <tr class="table-light forum-table">
-                    <td><a href="{{path("subject", {'id': subject.Id}) }}">{{subject.Title}}</a></td>
+                    <td><a href="{{ path("subject", {'id': subject.Id}) }}">{{subject.Title}}</a></td>
                     <td>{{ subject.Content|length > 50 ? subject.Content|slice(0, 50) ~ '...' : subject.Content}}</td>
                     <td>{{ subject.getUser.username }}</td>
                     <td>{{ subject.createdAt | date('d/m/Y') }}</td>
@@ -41,7 +41,7 @@
     <div class="jumbotron forum-form">
         {% if not app.user %}
         <div id="Not_Connected">
-            <p>Veuillez vous <a href="{{path("security_connexion")}}"> connecter  </a>  pour creer un sujet</p>
+            <p>Veuillez vous <a href="{{ path("security_connexion") }}"> connecter  </a>  pour creer un sujet</p>
         </div>
             
         {% else %}

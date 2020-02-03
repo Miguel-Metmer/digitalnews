@@ -30,12 +30,20 @@
         <div class="d-flex w-100 justify-content-between">
             <h5 class="mb-1">{{ comment.getUser.username }}</h5>
             <small>
-                {% if not app.user %}
+                {# {% if not app.user %}
                     {{ comment.createdAt | date("h/m/Y") }} 
                 {% else %}
                     {{ comment.createdAt | date("h/m/Y") }} <br>
                     <a href="{{ path("removeComment", {"subjectId": subject.Id, "commentId": comment.Id }) }}">Supprimer</a>
-                {% endif %}
+                {% endif %} #}
+
+                    {% if is_granted("ROLE_ADMINISTRATOR") == true %}
+                        {{ comment.createdAt | date("h/m/Y") }} <br>
+                        <a href="{{ path("removeComment", {"subjectId": subject.Id, "commentId": comment.Id }) }}">Supprimer</a>
+                    {% else %}
+                        {{ comment.createdAt | date("h/m/Y") }} 
+                    {% endif %}
+
             </small>
         </div>
         <p class="mb-1">{{ comment.Content }}</p>
@@ -46,7 +54,7 @@
 <div class="jumbotron forum-form">
     {% if not app.user %}
         <div id="Not_Connected">
-            <p>Veuillez vous <a href="{{path("security_connexion")}}"> connecter  </a>  pour commenter</p>
+            <p>Veuillez vous <a href="{{ path("security_connexion") }}"> connecter  </a>  pour commenter</p>
         </div>
     {% else %}
        {{ form_start(form, {"attr": {"id": "Lol"}}) }}

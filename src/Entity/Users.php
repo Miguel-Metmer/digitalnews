@@ -38,6 +38,11 @@ class Users implements UserInterface
      */
     private $Mail;
 
+    /**
+     * @ORM\Column(type="json")
+     */
+    private $roles = [];
+
     public function getId(): ?int
     {
         return $this->id;
@@ -77,11 +82,6 @@ class Users implements UserInterface
 
     }
 
-    public function getRoles()
-    {
-        return ['ROLE_USER'];
-    }
-
     public function getMail(): ?string
     {
         return $this->Mail;
@@ -90,6 +90,20 @@ class Users implements UserInterface
     public function setMail(string $Mail): self
     {
         $this->Mail = $Mail;
+
+        return $this;
+    }
+
+    public function getRoles(): array
+    {
+        $roles = $this->roles;
+        $roles[] =  'ROLE_USER';
+        return array_unique($roles);
+    }
+
+    public function setRoles(array $roles): self
+    {
+        $this->roles = $roles;
 
         return $this;
     }
