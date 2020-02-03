@@ -29,7 +29,14 @@
     <div class="list-group-item list-group-item-action flex-column align-items-start active">
         <div class="d-flex w-100 justify-content-between">
             <h5 class="mb-1">{{ comment.getUser.username }}</h5>
-            <small>{{ comment.createdAt | date("h/m/Y") }}</small>
+            <small>
+                {% if not app.user %}
+                    {{ comment.createdAt | date("h/m/Y") }} 
+                {% else %}
+                    {{ comment.createdAt | date("h/m/Y") }} <br>
+                    <a href="{{ path("removeComment", {"subjectId": subject.Id, "commentId": comment.Id }) }}">Supprimer</a>
+                {% endif %}
+            </small>
         </div>
         <p class="mb-1">{{ comment.Content }}</p>
     </div>

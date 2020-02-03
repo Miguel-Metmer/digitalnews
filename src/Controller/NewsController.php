@@ -121,4 +121,16 @@ class NewsController extends AbstractController
             "form" => $form->createView()
         ]);
     } 
+
+    /**
+     * @Route("/forum/{subjectId}/{commentId}", name="removeComment")
+     */
+    public function removeSubject(EntityManagerInterface $manager, $subjectId, $commentId)
+    {
+        $repository = $this->getDoctrine()->getRepository(Comments::class);
+        $comment = $repository->find($commentId);
+        $manager->remove($comment);
+        $manager->flush();
+        return $this->redirectToRoute("subject", ["id" => $subjectId]);
+    }
 }
