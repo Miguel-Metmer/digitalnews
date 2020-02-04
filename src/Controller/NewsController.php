@@ -12,6 +12,7 @@ use App\Form\SubjectType;
 use App\Form\CommentType;
 use Symfony\Component\HttpFoundation\Request;
 use Doctrine\ORM\EntityManagerInterface;
+use Knp\Component\Pager\PaginatorInterface;
 
 class NewsController extends AbstractController
 {
@@ -26,7 +27,7 @@ class NewsController extends AbstractController
     /**
      * @Route("/archive", name="archive")
      */
-    public function archive(EntityManagerInterface $manager)
+    public function archive(EntityManagerInterface $manager, PaginatorInterface $paginator, Request $request)
     {
         $news = new News();
         $apiNews = file_get_contents("https://newsapi.org/v2/top-headlines?country=fr&pageSize=40&apiKey=a727be71caab4420b0862dad9c71c661");
@@ -52,9 +53,11 @@ class NewsController extends AbstractController
             }
         }
 
+
         $articles = $server->findAll();
+        $pagination = $paginator->paginate($articles, $request->query->getInt('page', 1), 15);
         return $this->render("news/archive.html.twig", [
-            "news" => $articles,
+            "news" => $pagination,
         ]);
     }
 
@@ -71,7 +74,7 @@ class NewsController extends AbstractController
         if($form->isSubmitted() && $form->isValid()) // Si la requête à lieu, est que les infos sont valide
         {
             $subject->setTitle($subject->getTitle());
-            $subject->setContent($subject->getContent());
+            $subject->setContent($subject->getContent()); 
             $subject->setCreatedAt(new \DateTime());
             $subject->setUser($this->getUser());
 
@@ -91,7 +94,7 @@ class NewsController extends AbstractController
     /**
      * @Route("/forum/{id}", name="subject")
      */
-    public function showForumSubjects($id, Request $request, EntityManagerInterface $manager)
+    public function showForumSubjects($id, Request $request, EntityManagerInterface $manager, PaginatorInterface $paginator)
     {
         $repo = $this->getDoctrine()->getRepository(Subjects::class);
         $subjects = $repo->find($id);
@@ -114,10 +117,11 @@ class NewsController extends AbstractController
 
         $commentsRepo = $this->getDoctrine()->getRepository(Comments::class);
         $comment = $commentsRepo->findby(['Subject' => $id]);
+        $pagination = $paginator->paginate($comment, $request->query->getInt('page', 1), 8);
 
         return $this->render('news/subjects.html.twig', [
             "subject" => $subjects,
-            "comments" => $comment,
+            "comments" => $pagination,
             "form" => $form->createView()
         ]);
     } 

@@ -23,32 +23,25 @@
             <h5 class="mb-1">{{ subject.getUser.username }}</h5>
             <small>{{ subject.createdAt | date("h/m/Y") }}</small>
         </div>
-        <p class="mb-1">{{ subject.Content }}</p>
+        <p class="mb-1"> {% autoescape  %} {{ subject.Content|raw }} {% endautoescape %}  </p>
     </div>
-  {% for comment in comments %} 
+    {% for comment in comments %} 
     <div class="list-group-item list-group-item-action flex-column align-items-start active">
         <div class="d-flex w-100 justify-content-between">
             <h5 class="mb-1">{{ comment.getUser.username }}</h5>
             <small>
-                {# {% if not app.user %}
-                    {{ comment.createdAt | date("h/m/Y") }} 
-                {% else %}
+                {% if is_granted("ROLE_ADMINISTRATOR") == true %}
                     {{ comment.createdAt | date("h/m/Y") }} <br>
                     <a href="{{ path("removeComment", {"subjectId": subject.Id, "commentId": comment.Id }) }}">Supprimer</a>
-                {% endif %} #}
-
-                    {% if is_granted("ROLE_ADMINISTRATOR") == true %}
-                        {{ comment.createdAt | date("h/m/Y") }} <br>
-                        <a href="{{ path("removeComment", {"subjectId": subject.Id, "commentId": comment.Id }) }}">Supprimer</a>
-                    {% else %}
-                        {{ comment.createdAt | date("h/m/Y") }} 
-                    {% endif %}
-
+                {% else %}
+                    {{ comment.createdAt | date("h/m/Y") }} 
+                {% endif %}
             </small>
         </div>
-        <p class="mb-1">{{ comment.Content }}</p>
+        <p class="mb-1"> {% autoescape  %} {{ comment.Content|raw }} {% endautoescape %}  </p>
     </div>
-  {% endfor %} 
+    {% endfor %} 
+    {{ knp_pagination_render(comments) }} 
 </div>
 
 <div class="jumbotron forum-form">
@@ -57,7 +50,7 @@
             <p>Veuillez vous <a href="{{ path("security_connexion") }}"> connecter  </a>  pour commenter</p>
         </div>
     {% else %}
-       {{ form_start(form, {"attr": {"id": "Lol"}}) }}
+       {{ form_start(form, {"attr": {"novalidate": "novalidate"}}) }}
             {{ form_row(form.Content) }}
             <div class="button-form">
                  <button type="submit" class="btn btn-success"> Creer </button>

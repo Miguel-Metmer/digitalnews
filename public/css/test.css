@@ -120,6 +120,13 @@ footer ul li
     background-color: rgb(239, 251, 246);
 }
 
+.pagination > span
+{
+    border: 1px solid gray;
+    background-color: #F8F5F0;
+    padding: 0.5% 1.0%;
+}
+
 @media all and (max-width : 900px)
 {
     .news-list .card-header h1
@@ -164,5 +171,12 @@ footer ul li
     .archive-table td a
     {
         font-size: 1.0em;
+    }
+
+    .pagination > span
+    {
+        border: 1px solid gray;
+        background-color: #F8F5F0;
+        padding: 2.0% 4.0%;
     }
 }

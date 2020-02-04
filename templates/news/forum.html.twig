@@ -24,15 +24,21 @@
                 <th scope="col">Messages</th>
                 <th scope="col">Nom d'utilisateur</th>
                 <th scope="col">Date de création</th>
+                {% if is_granted("ROLE_ADMINISTRATOR") == true %}
+                    <th scope="col">Actions</th>
+                {% endif %}
             </tr>
         </thead>
         <tbody>
             {% for subject in subjects %}
                 <tr class="table-light forum-table">
                     <td><a href="{{ path("subject", {'id': subject.Id}) }}">{{subject.Title}}</a></td>
-                    <td>{{ subject.Content|length > 50 ? subject.Content|slice(0, 50) ~ '...' : subject.Content}}</td>
+                    <td>{% autoescape  %} {{ subject.Content|length > 50 ? subject.Content|slice(0, 50) ~ '...' : subject.Content|raw}} {% endautoescape %}</td>
                     <td>{{ subject.getUser.username }}</td>
                     <td>{{ subject.createdAt | date('d/m/Y') }}</td>
+                    {% if is_granted("ROLE_ADMINISTRATOR") == true %}
+                        <td><a href="">supprimer</a></td>
+                    {% endif %}
                 </tr>
             {% endfor %}
         </tbody>
@@ -45,9 +51,9 @@
         </div>
             
         {% else %}
-            {{ form_start(form) }}
+            {{ form_start(form, {"attr": {"novalidate": "novalidate"}}) }}
             {{ form_row(form.Title) }}
-            {{ form_row(form.Content) }}
+            {{ form_row(form.Content, {"attr": {"placeholder": "Test"}}) }}
             <div class="button-form">
                  <button type="submit" class="btn btn-success"> Creer </button>
             </div>
