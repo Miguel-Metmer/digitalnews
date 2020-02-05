@@ -127,6 +127,11 @@ footer ul li
     padding: 0.5% 1.0%;
 }
 
+.archive_list td:nth-child(odd)
+{
+    background-color: rgb(239, 251, 246);
+}
+
 @media all and (max-width : 900px)
 {
     .news-list .card-header h1
@@ -157,6 +162,11 @@ footer ul li
         text-align: center;
         border-bottom: 1px solid black;
     }
+
+    .forum-table td a
+    {
+        font-size: 2.0em;
+    }
     .archive-table
     {
         display: flex;
@@ -178,5 +188,10 @@ footer ul li
         border: 1px solid gray;
         background-color: #F8F5F0;
         padding: 2.0% 4.0%;
+    }
+
+    .forum-form form
+    {
+        width: 100%;
     }
 }

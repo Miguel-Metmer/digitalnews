@@ -6,6 +6,7 @@ class Tiny
             selector: 'textarea#comment_Content',
             plugins: 'emoticons',
             toolbat: 'emoticons',
+            resize: false
         });
     };
     subjectEdit()
@@ -14,6 +15,7 @@ class Tiny
             selector: 'textarea#subject_Content',
             plugins: 'emoticons',
             toolbat: 'emoticons',
+            resize: false
         });
     };
 }

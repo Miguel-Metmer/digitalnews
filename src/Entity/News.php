@@ -21,6 +21,16 @@ class News
      */
     private $address;
 
+    /**
+     * @ORM\Column(type="string", length=100, nullable=true)
+     */
+    private $Source;
+
+    /**
+     * @ORM\Column(type="string", length=100, nullable=true)
+     */
+    private $Published;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -34,6 +44,30 @@ class News
     public function setAddress(string $address): self
     {
         $this->address = $address;
+
+        return $this;
+    }
+
+    public function getSource(): ?string
+    {
+        return $this->Source;
+    }
+
+    public function setSource(?string $Source): self
+    {
+        $this->Source = $Source;
+
+        return $this;
+    }
+
+    public function getPublished(): ?string
+    {
+        return $this->Published;
+    }
+
+    public function setPublished(?string $Published): self
+    {
+        $this->Published = $Published;
 
         return $this;
     }

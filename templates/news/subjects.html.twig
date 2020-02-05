@@ -38,7 +38,7 @@
                 {% endif %}
             </small>
         </div>
-        <p class="mb-1"> {% autoescape  %} {{ comment.Content|raw }} {% endautoescape %}  </p>
+        <p class="mb-1">  {{ comment.Content|raw }}  </p>
     </div>
     {% endfor %} 
     {{ knp_pagination_render(comments) }} 

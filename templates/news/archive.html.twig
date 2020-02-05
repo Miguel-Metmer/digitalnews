@@ -5,14 +5,17 @@
 <table class="table table-hover">
     <thead>
         <tr>
-            <th scope="col">Archives</th>
+            <th scope="col">Source</th>
+            <th scope="col">Liens</th>
+            <th scope="col">Date de publication</th>
         </tr>
     </thead>
-    <tbody>
+    <tbody class="archive_list">
         {% for article in news %}
             <tr class="table table-light archive-table">
-                {# <td> <a href=" {{ article.address }}"> {{ article.address|length > 60 ? article.address|slice(0, 60)~ '...' : article.address}} </td> #}
-                <td> <a href=" {{ article.address }}"> {{ article.address }} </a></td>
+                <td> {{ article.source }} </td>
+                <td> <a href=" {{ article.address }}"> {{ article.address|length > 60 ? article.address|slice(0, 60)~ '...' : article.address}} </td> 
+                <td> {{ article.published }} </td>
             </tr>
          {% endfor %}
     </tbody>

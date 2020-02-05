@@ -41,12 +41,16 @@ class NewsController extends AbstractController
             if($server->findBy(["address" => $article->url]))
             {
                 $news->setAddress($article->url);
+                $news->setSource($article->source->name);
+                $news->setPublished($article->publishedAt);
                 $manager->flush();
                 $manager->clear();
             }
             else
             {
                 $news->setAddress($article->url);
+                $news->setSource($article->source->name);
+                $news->setPublished($article->publishedAt);
                 $manager->persist($news);
                 $manager->flush();
                 $manager->clear();
@@ -64,7 +68,7 @@ class NewsController extends AbstractController
     /**
      * @Route("/forum", name="forum")
      */
-    public function forum(Request $request, EntityManagerInterface $manager)
+    public function forum(Request $request, EntityManagerInterface $manager, PaginatorInterface $paginator)
     {
         $subject = new Subjects(); //On creer un formulaire vide.
 
@@ -85,8 +89,9 @@ class NewsController extends AbstractController
 
         $repo = $this->getDoctrine()->getRepository(Subjects::class); //Variable qui va chercher dans la base de données contenant la classe Comments
         $subjects = $repo->findAll();
+        $pagination = $paginator->paginate($subjects, $request->query->getInt('page', 1), 15);
         return $this->render('news/forum.html.twig', [
-            "subjects" => $subjects,
+            "subjects" => $pagination,
             'form' => $form->createView() // On passe en argument le paramètre form.
         ]);
     }

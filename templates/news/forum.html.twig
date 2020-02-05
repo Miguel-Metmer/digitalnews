@@ -33,7 +33,7 @@
             {% for subject in subjects %}
                 <tr class="table-light forum-table">
                     <td><a href="{{ path("subject", {'id': subject.Id}) }}">{{subject.Title}}</a></td>
-                    <td>{% autoescape  %} {{ subject.Content|length > 50 ? subject.Content|slice(0, 50) ~ '...' : subject.Content|raw}} {% endautoescape %}</td>
+                    <td> {{ subject.Content|length > 50 ?  subject.Content|striptags|slice(0,50) ~ '...' : subject.Content|raw }}   </td> 
                     <td>{{ subject.getUser.username }}</td>
                     <td>{{ subject.createdAt | date('d/m/Y') }}</td>
                     {% if is_granted("ROLE_ADMINISTRATOR") == true %}
@@ -43,7 +43,7 @@
             {% endfor %}
         </tbody>
     </table>
-
+    {{ knp_pagination_render(subjects) }} 
     <div class="jumbotron forum-form">
         {% if not app.user %}
         <div id="Not_Connected">

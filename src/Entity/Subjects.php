@@ -32,7 +32,7 @@ class Subjects
     private $createdAt;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Users", cascade={"remove"})
+     * @ORM\ManyToOne(targetEntity="App\Entity\Users", cascade={"persist", "remove"})
      */
     private $user;
 
