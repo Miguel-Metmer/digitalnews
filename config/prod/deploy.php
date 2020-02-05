@@ -12,7 +12,7 @@ return new class extends DefaultDeployer
             // the absolute path of the remote server directory where the project is deployed
             ->deployDir('/Openclassroom/Blog_News')
             // the URL of the Git repository where the project code is hosted
-            ->repositoryUrl('https://github.com/symfony/symfony-demo')
+            ->repositoryUrl('git@github.com/Miguel-Metmer/digitalnews.git')
             // the repository branch to deploy
             ->repositoryBranch('master')
         ;
