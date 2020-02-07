@@ -26,6 +26,8 @@
                 <th scope="col">Date de création</th>
                 {% if is_granted("ROLE_ADMINISTRATOR") == true %}
                     <th scope="col">Actions</th>
+                {% elseif is_granted("ROLE_MODERATOR") == true  %}
+                    <th scope="col">Actions</th>
                 {% endif %}
             </tr>
         </thead>
@@ -37,7 +39,9 @@
                     <td>{{ subject.getUser.username }}</td>
                     <td>{{ subject.createdAt | date('d/m/Y') }}</td>
                     {% if is_granted("ROLE_ADMINISTRATOR") == true %}
-                        <td><a href="">supprimer</a></td>
+                        <td><a href=" {{ path("removeSubject", {"subjectId": subject.ID }) }} ">supprimer</a></td>
+                    {% elseif is_granted("ROLE_MODERATOR") == true  %}
+                        <td><a href=" {{ path("removeSubject", {"subjectId": subject.ID }) }} ">supprimer</a></td>
                     {% endif %}
                 </tr>
             {% endfor %}

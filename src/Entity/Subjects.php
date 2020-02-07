@@ -32,9 +32,14 @@ class Subjects
     private $createdAt;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Users", cascade={"persist", "remove"})
+     * @ORM\ManyToOne(targetEntity="App\Entity\Users")
      */
     private $user;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Comments", mappedBy="Subject",  cascade={"remove", "persist"})
+     */
+    private $comment;
 
     public function getId(): ?int
     {
@@ -85,6 +90,18 @@ class Subjects
     public function setUser(?Users $user): self
     {
         $this->user = $user;
+
+        return $this;
+    }
+
+    public function getComment(): ?Comments
+    {
+        return $this->comment;
+    }
+
+    public function setComment(?Comments $comment): self
+    {
+        $this->comment = $comment;
 
         return $this;
     }

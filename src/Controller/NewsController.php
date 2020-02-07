@@ -65,6 +65,14 @@ class NewsController extends AbstractController
         ]);
     }
 
+     /**
+     * @Route("/mentions", name="mentions")
+     */
+    public function showMentions()
+    {
+        return $this->render("news/mentions.html.twig");
+    }
+
     /**
      * @Route("/forum", name="forum")
      */
@@ -132,9 +140,21 @@ class NewsController extends AbstractController
     } 
 
     /**
+     * @Route("forum/delete/{subjectId}", name="removeSubject")
+     */
+    public function removeSubject(EntityManagerInterface $manager, $subjectId)
+    {
+        $repository = $this->getDoctrine()->getRepository(Subjects::class);
+        $subject = $repository->find($subjectId);
+        $manager->remove($subject);
+        $manager->flush();
+        return $this->redirectToRoute("forum");
+    }
+
+    /**
      * @Route("/forum/{subjectId}/{commentId}", name="removeComment")
      */
-    public function removeSubject(EntityManagerInterface $manager, $subjectId, $commentId)
+    public function removeComment(EntityManagerInterface $manager, $subjectId, $commentId)
     {
         $repository = $this->getDoctrine()->getRepository(Comments::class);
         $comment = $repository->find($commentId);
@@ -142,4 +162,6 @@ class NewsController extends AbstractController
         $manager->flush();
         return $this->redirectToRoute("subject", ["id" => $subjectId]);
     }
+
+
 }

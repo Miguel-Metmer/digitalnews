@@ -33,6 +33,9 @@
                 {% if is_granted("ROLE_ADMINISTRATOR") == true %}
                     {{ comment.createdAt | date("h/m/Y") }} <br>
                     <a href="{{ path("removeComment", {"subjectId": subject.Id, "commentId": comment.Id }) }}">Supprimer</a>
+                {% elseif is_granted("ROLE_MODERATOR") == true %}
+                    {{ comment.createdAt | date("h/m/Y") }} <br>
+                    <a href="{{ path("removeComment", {"subjectId": subject.Id, "commentId": comment.Id }) }}">Supprimer</a>
                 {% else %}
                     {{ comment.createdAt | date("h/m/Y") }} 
                 {% endif %}

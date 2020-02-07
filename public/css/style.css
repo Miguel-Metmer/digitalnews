@@ -1,456 +1,102 @@
-html
+.category-list ul li a
 {
-    margin: 0;
-    padding: 0;
-}
-body
-{
-    margin: 0;
-    padding: 0;
-    position: relative;
-}
-header
-{
-    display: flex;
-    justify-content: center;
-}
-header a 
-{
-    color: black;
     text-decoration: none;
-}
-nav
-{
-    width: 90%;
-    margin: auto;
-    display: flex;
-    justify-content: center;
-    /* border-bottom: 1px solid black; */
-}
-nav ul
-{
-    display: flex;
-    padding: 0;
-}
-nav li
-{
-    display: flex;
-    list-style-type: none;
-    margin: 0 10px;
-    position: relative;
-}
+} 
 
-@keyframes opacity
-{
-    0%
-    {
-        opacity: 0;
-    }
-    50%
-    {
-        opacity: 1;
-    }
-    100%
-    {
-        opacity: 0;
-    }
-}
-
-@keyframes move
-{
-    0%
-    {
-        transform: translateY(0);
-    }
-    35%
-    {
-        transform: translateY(10px);
-    }
-    75%
-    {
-        transform: translateY(-10px);
-    }
-    100%
-    {
-        transform: translateY(0);
-    }
-}
-
-
-nav li:hover > ul li
-{
-    display: flex;
-    animation: opacity 10s forwards;
-}
-
-nav li ul
-{
-    position: absolute;
-    height: 100%;
-    left: 130px;
-}
-
-nav li ul li
-{
-    display: flex;
-    align-items: center;
-    display: none;
-}
-
-nav li ul li a
-{
-    font-size: 1em;
-}
-
-nav li ul li:hover
-{
-    animation: move 5s forwards;
-}
-
-nav a
-{
-    color: black;
-    text-decoration: none;
-    font-size: 2.0em;
-}
-
-@keyframes initial-to-royalblue
-{
-    0%
-    {
-        color: black;
-    }
-    100%
-    {
-        color: royalblue;
-    }
-}
-
-
-nav a:hover
-{
-    animation: initial-to-royalblue 1.0s forwards;
-}
-
-#News
+.news-list
 {
     display: flex;
     flex-direction: column;
-    text-align: center;
-    background-color: rgba(253, 253, 253, 0.781);
 }
 
-#News::after
+.news-list .nav-tabs
 {
-    content: "";
-    flex: auto;
-}
-
-#Slider 
-{
-    width: 100%;
-    height: 600px;
-}
-
-#Slider figure 
-{
-    position: relative;
-    margin: 0;
-    background-color: rgba(146, 166, 175, 0.842);
-    height: 100%;
-}
-
-#Slider figure img
-{
-    width: 100%;
-    height: 600px;
-    opacity: 0.4;
-    vertical-align: middle;
-}
-
-#Slider figure figcaption
-{
-    position: absolute;
-    top: 40%;
-    width: 100%;
-    margin: auto;
-}
-
-#Slider figure figcaption h1
-{
-    font-size: 6.0em;
-    width: 100%;
-    margin: 0;
-    text-align: center;
-}
-
-#Article_Box
-{
-    margin: auto;
-    width: 80%;
-    margin-top: 5%;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    justify-content: space-between;
-}
-
-@keyframes gradient
-{
-    0%
-    {
-        background-position: 0% 50%;
-    }
-    50%
-    {
-        background-position: 100% 50%;
-    }
-    100%
-    {
-        background-position: 0% 50%;
-    }
-}
-
-.article
-{
-    width: 30%;
-    margin-top: 4%;
-}
-
-.article h1
-{
-    color: rgb(225, 89, 65);
-}
-
-.article h2
-{
-    font-size: 1.0em;
-    margin-top: 3%;
-    margin-left: 2%;
-    margin-right: 2%;
-    height: 18%;
-}
-
-.article h2 a
-{
-    text-decoration: none;
-    color: black;
-}
-
-.article h2 a:hover
-{
-    animation: initial-to-royalblue 1.0s forwards;
-}
-
-.article img
-{
-    width: 80%;
-    height: 220px;
-    align-self: center;
-    box-shadow: 2px 1px 2px 1px;
-    border: 1px solid black;
-    border-radius: 10px;
-}
-
-.article p
-{
-    margin: 4%;
-    height: 100px;
-    font-style: italic;
-}
-
-.article h3
-{
-    font-size: 1.0em;
-    font-weight: normal;
-}
-
-#Forum
-{
-    display: flex;
-    flex-direction: column;
-    width: 90%;
-    margin: auto;
-}
-
-#Forum  h1
-{
-    text-align: center;
-    color: rgb(102, 161, 216);
-    border-bottom: 4px dashed grey;
-    padding-bottom: 2%;
-    margin-bottom: 0;
-}
-
-.subject
-{
-    border-bottom: 4px dashed grey;
-}
-
-.subject p a
-{
-    color: rgb(102, 161, 216);
-    text-decoration: none;
-    font-size: 2.0em;
-}
-
-
-#Registration, #Connexion, #Create
-{
-    width: 50%;
-    margin: auto;
-    margin-top: 2%;
-}
-
-#Create
-{
-    border: 1px solid black;
-    box-shadow: 0px 0px 20px -10px;
-    margin-bottom: 10%;
-}
-
-#Registration div, #Connexion div, #Create div
-{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    width: 100%;
-    margin: auto;
-    text-align: center;
-}
-
-#Registration div label, #Connexion div label, #Create div label
-{
-    width: 25%;
-    margin: auto;
-    font-size: 2.0em;
-}
-
-#Registration div input, #Connexion div input, #Create div input
-{
-    width: 35%;
-    margin: auto;
-    padding: 1%;
     margin-bottom: 2%;
 }
 
-#Register_Button, #Create_Button
+.news-list .news
 {
+    width: 80%;
     margin: auto;
-    width: 25%;
+}
+
+.news-list .news .card-header
+{
     text-align: center;
 }
 
-#Register_Button button, #Create_Button button
+.news-list .news .card-title
 {
-    padding: 2% 4%;
-    width: 25%;
-    margin: auto;
-    margin-bottom: 4%;
+    text-align: center;
 }
 
-#Register_Background
+.news-list .news img
 {
-    width: 40%;
+    display: block;
+    width: 300px;
+    height: 220px;
+    margin: auto;
+    box-shadow: 1px 2px 15px 3px;
+}
+
+.news-list .news .card-text
+{
+    margin-top: 15px;
+    text-align: center;
+    margin-left: 1%;
+    margin-right: 1%;
+}
+
+.news-list .news .card-footer
+{
+    text-align: center;
+}
+
+.forum-form form
+{
+    width: 50%;
+    margin: auto;
+}
+
+.forum-form form label
+{
+    width: 100%;
+    text-align: center;
+    font-size: x-large;
+}
+
+.forum-form form textarea
+{
+    resize: none;
+    height: 150px;
+}
+
+.forum-form form .button-form
+{
+    text-align: center;
+}
+
+.forum-form img
+{
     display: block;
     margin: auto;
+    box-shadow: 1px 0px 5px 3px;
+    margin-bottom: 2%;
 }
 
-#Create div textarea
-{
-    margin: auto;
-    width: 50%;
-    margin-bottom: 5%;
-    /* padding: 5%; */
-    height: 100px;
-    resize: none;
-    text-align: justify;
-}
-
-#Not_Connected
+.forum-form form .button-form button
 {
     width: 50%;
-    margin: auto;
-    text-align: center;
 }
 
-#Not_Connected p
+.jumbotron
 {
-    font-size: 2.0em;
-    font-weight: bold;
-}
-
-#Not_Connected a
-{
-    text-decoration: none;
-}
-
-#Subject_Main
-{
-    text-align: center;
-}
-
-#Subject_Main h1
-{
-    width: 25%;
-    margin: auto;
-    margin-bottom: 5%;
-    margin-top: 5%;
-    color: rgb(102, 161, 216);
-}
-
-.comments_column
-{
-    display: flex;
-    flex-direction: column;
-    text-align: center;
-    border: 2px dashed grey;
-    width: 75%;
-    margin: 1% auto ;
-}
-
-
-#Comment_Create
-{
-    margin-top: 5%;
-}
-
-#Comment_Create form
-{
-    width: 50%;
-    margin: auto;
-}
-
-#Comment_Create form div
-{
-    text-align: center;
-    display: flex;
-    flex-direction: column;
-}
-
-#Comment_Create form div label
-{
-    font-size: 2.0em;
-}
-
-#Comment_Create form div textarea
-{
-    height: 150px;
-    resize: none;
-}
-
-#Comment_Create form div button
-{
-    width: 50%;
-    height: 50px;
-    margin: auto;
-    margin-top: 2%;
+    background-color: white;
 }
 
 footer
 {
-    margin-top: 5%;
-    background-color: #3a3a3a;
+    background-color: #3E3F3A;
     position: fixed;
     bottom: 0;
     width: 100%;
@@ -458,491 +104,101 @@ footer
 
 footer ul
 {
-    margin: 0;
-}
-
-footer ul li
-{
-    list-style: none;
-    padding: 0.5% 0;
-}
-
-footer ul li a
-{
-    text-decoration: none;
-    color: white;
-}
-
-#Archive
-{
     display: flex;
-    flex-direction: column;
-    justify-content: start;
+    padding: 0;
+    margin: 0.5%;
+    width: 50%;
 }
 
-#Archive ul 
+footer ul li 
 {
-
-}
-
-#Archive ul li 
-{
-    width: 90%;
-    list-style: none;
-    margin-bottom: 1%;
+    list-style-type: none;
+    margin-left: 1%;
 }
 
 
-
-/* -------------------------- */
-@media all and (max-width: 1400px)
+.forum-table td:nth-child(even)
 {
-    html
+    background-color: rgb(239, 251, 246);
+}
+
+.pagination > span
+{
+    border: 1px solid gray;
+    background-color: #F8F5F0;
+    padding: 0.5% 1.0%;
+}
+
+.archive_list td:nth-child(odd)
+{
+    background-color: rgb(239, 251, 246);
+}
+
+.list-group-item-action:hover
+{
+    background-color: white;
+}
+
+@media all and (max-width : 900px)
+{
+    .news-list .card-header h1
     {
-        margin: 0;
-        padding: 0;
+        font-size: 1.8em;
     }
-    body
+    .news-list .card-title
     {
-        margin: 0;
-        padding: 0;
+        font-size: 1.2em;
     }
-    header
+    .news-list .news img
     {
-        display: flex;
-        justify-content: center;
-    }
-    header a 
-    {
-        color: black;
-        text-decoration: none;
-    }
-    nav
-    {
-        width: 90%;
-        padding-bottom: 2%;
+        display: block;
+        width: 45vw;
+        height: 25vw;
         margin: auto;
-        display: flex;
-        justify-content: center;
-        border-bottom: 1px solid black;
-    }
-    nav ul
-    {
-        display: flex;
-        padding: 0;
-    }
-    nav li
-    {
-        display: flex;
-        list-style-type: none;
-        margin: 0 10px;
-        position: relative;
+        box-shadow: 1px 2px 15px 3px;
     }
 
-    @keyframes opacity
-    {
-        0%
-        {
-            opacity: 0;
-        }
-        10%
-        {
-            opacity: 1;
-        }
-        100%
-        {
-            opacity: 0;
-        }
-    }
-
-    @keyframes move
-    {
-        0%
-        {
-            transform: translateY(0);
-        }
-        35%
-        {
-            transform: translateY(10px);
-        }
-        75%
-        {
-            transform: translateY(-10px);
-        }
-        100%
-        {
-            transform: translateY(0);
-        }
-    }
-
-
-    nav li:hover > ul li
-    {
-        display: flex;
-        animation: opacity 25s forwards;
-    }
-
-    nav li ul
-    {
-        position: absolute;
-        height: 100%;
-        left: -300px;
-        top: 35px;
-    }
-
-    nav li ul li:nth-child(1)
+    thead
     {
         display: none;
     }
-
-    nav li ul li
+    .forum-table
     {
-        display: flex;
-        align-items: center;
-        display: none;
-    }
-
-    nav li ul li:hover
-    {
-        animation: move 5s forwards;
-    }
-
-    nav a
-    {
-        color: black;
-        text-decoration: none;
-        font-size: 2.0em;
-    }
-
-    @keyframes initial-to-royalblue
-    {
-        0%
-        {
-            color: black;
-        }
-        100%
-        {
-            color: royalblue;
-        }
-    }
-
-
-    nav a:hover
-    {
-        animation: initial-to-royalblue 1.0s forwards;
-    }
-
-    #News
-    {
-        margin-top: 2%;
         display: flex;
         flex-direction: column;
         text-align: center;
+        border-bottom: 1px solid black;
     }
 
-    #News h1
+    .forum-table td a
     {
-        font-size: 4.0em;
-        margin: 1%;
+        font-size: 2.0em;
     }
-
-    #Article_Box
+    .archive-table
     {
-        margin: auto;
-        width: 80%;
-        margin-top: 5%;
         display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
-        justify-content: space-between;
+        flex-direction: column;
     }
-
-    #Article_Box h1
+    .archive-table td
+    {
+        word-wrap: break-word;
+        word-break: break-all;
+        white-space: normal;
+    }
+    .archive-table td a
     {
         font-size: 1.0em;
     }
 
-    @keyframes gradient
+    .pagination > span
     {
-        0%
-        {
-            background-position: 0% 50%;
-        }
-        50%
-        {
-            background-position: 100% 50%;
-        }
-        100%
-        {
-            background-position: 0% 50%;
-        }
+        border: 1px solid gray;
+        background-color: #F8F5F0;
+        padding: 2.0% 4.0%;
     }
 
-    .article
+    .forum-form form
     {
-        display: flex;
-    flex-direction: column;
-    /* border: 1px solid black; */
-    /* border-radius: 5px; */
-    /* box-shadow: 2px 1px 10px 1px; */
-    width: 30%;
-    margin-bottom: 2%;
-    /*background: linear-gradient(-45deg, #ffffff, #ecf1ed, #f0fff9e7, #bdffff);    
-    background-size: 400% 400%;
-    animation: gradient 25s ease infinite; */
-    }
-
-    .article h1
-    {
-        margin: 2%;
-        height: 75px;
-    }
-
-    .article h1 a
-    {
-        text-decoration: none;
-        color: black;
-    }
-
-    .article h1 a:hover
-    {
-        animation: initial-to-royalblue 1.0s forwards;
-    }
-
-    .article img
-    {
-        width: 80%;
-        height: 50%;
-        align-self: center;
-        border: 1px solid black;
-    }
-
-    .article p
-    {
-        height: 150px;
-        font-style: italic;
-    }
-}
-
-/* -------------------------- */
-@media all and (max-width: 950px)
-{
-    html
-    {
-        margin: 0;
-        padding: 0;
-    }
-    body
-    {
-        margin: 0;
-        padding: 0;
-    }
-    header
-    {
-        display: flex;
-        justify-content: center;
-    }
-    header a 
-    {
-        color: black;
-        text-decoration: none;
-    }
-    nav
-    {
-        width: 90%;
-        margin: auto;
-        display: flex;
-        justify-content: center;
-        border-bottom: 1px solid black;
-    }
-    nav ul
-    {
-        display: flex;
-        padding: 0;
-    }
-    nav li
-    {
-        display: flex;
-        list-style-type: none;
-        margin: 0 10px;
-        position: relative;
-    }
-
-    @keyframes opacity
-    {
-        0%
-        {
-            opacity: 0;
-        }
-        10%
-        {
-            opacity: 1;
-        }
-        100%
-        {
-            opacity: 0;
-        }
-    }
-
-    @keyframes move
-    {
-        0%
-        {
-            transform: translateY(0);
-        }
-        35%
-        {
-            transform: translateY(10px);
-        }
-        75%
-        {
-            transform: translateY(-10px);
-        }
-        100%
-        {
-            transform: translateY(0);
-        }
-    }
-
-
-    nav li:hover > ul li
-    {
-        display: flex;
-        animation: opacity 25s forwards;
-    }
-
-    nav li ul
-    {
-        position: absolute;
-        height: 100%;
-        left: 130px;
-    }
-
-    nav li ul li
-    {
-        display: flex;
-        align-items: center;
-        display: none;
-    }
-
-    nav li ul li:hover
-    {
-        animation: move 5s forwards;
-    }
-
-    nav a
-    {
-        color: black;
-        text-decoration: none;
-        font-size: 2.0em;
-    }
-
-    @keyframes initial-to-royalblue
-    {
-        0%
-        {
-            color: black;
-        }
-        100%
-        {
-            color: royalblue;
-        }
-    }
-
-
-    nav a:hover
-    {
-        animation: initial-to-royalblue 1.0s forwards;
-    }
-
-    #News
-    {
-        margin-top: 2%;
-        display: flex;
-        flex-direction: column;
-        text-align: center;
-    }
-
-    #News h1
-    {
-        font-size: 4.0em;
-        margin: 1%;
-    }
-
-    #Article_Box
-    {
-        width: 80%;
-        margin-top: 5%;
-        display: flex;
-        align-content: center;
-        flex-direction: column;
-    }
-
-    #Article_Box h1
-    {
-        font-size: 1.0em;
-    }
-
-    @keyframes gradient
-    {
-        0%
-        {
-            background-position: 0% 50%;
-        }
-        50%
-        {
-            background-position: 100% 50%;
-        }
-        100%
-        {
-            background-position: 0% 50%;
-        }
-    }
-
-    .article
-    {
-        display: flex;
-        flex-direction: column;
-        /* border: 1px solid black; */
-        /* border-radius: 5px; */
-        /* box-shadow: 2px 1px 10px 1px; */
-        width: 60%;
-        margin-bottom: 5%;
-        /*background: linear-gradient(-45deg, #ffffff, #ecf1ed, #f0fff9e7, #bdffff);    
-        background-size: 400% 400%;
-        animation: gradient 25s ease infinite; */
-    }
-
-    .article h1
-    {
-        margin: 2%;
-        height: 75px;
-    }
-
-    .article h1 a
-    {
-        text-decoration: none;
-        color: black;
-    }
-
-    .article h1 a:hover
-    {
-        animation: initial-to-royalblue 1.0s forwards;
-    }
-
-    .article img
-    {
-        width: 80%;
-        height: 50%;
-        align-self: center;
-        border: 1px solid black;
-    }
-
-    .article p
-    {
-        width: 80%;
-        margin: auto;
-        height: 150px;
-        font-style: italic;
+        width: 100%;
     }
 }

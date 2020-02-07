@@ -68,4 +68,56 @@ class SecurityController extends AbstractController
     {
 
     }
+
+    /**
+     * @Route("/moderation", name="moderation")
+     */
+    public function moderation()
+    {
+        $user = new Users();
+
+        $repo = $this->getDoctrine()->getRepository(Users::class);
+
+        $user = $repo->findAll();
+        return $this->render("security/moderation.html.twig", [
+            "user" => $user,
+        ]);
+    }
+
+    /**
+     * @Route("/moderation/{id}", name="moderation_role_administrator")
+     */
+    public function moderationChangeRoleToAdministrator($id, EntityManagerInterface $manager)
+    {
+        $user = new Users();
+
+        $repo = $this->getDoctrine()->getRepository(Users::class);
+
+        $user = $repo->find($id);
+
+        $user->setRoles(array("ROLE_ADMINISTRATOR"));
+        $manager->flush();
+        $manager->clear();
+
+        return $this->redirectToRoute("moderation");
+    }
+
+    /**
+     * @Route("/moderation/admin/{id}", name="moderation_role_moderator")
+     */
+    public function moderationChangeRoleToModerator($id, EntityManagerInterface $manager)
+    {
+        $user = new Users();
+
+        $repo = $this->getDoctrine()->getRepository(Users::class);
+
+        $user = $repo->find($id);
+
+        $user->setRoles(array("ROLE_MODERATOR"));
+        $manager->flush();
+        $manager->clear();
+
+        return $this->redirectToRoute("moderation");
+    }
+
 }
