@@ -23,25 +23,32 @@
             <h5 class="mb-1">{{ subject.getUser.username }}</h5>
             <small>{{ subject.createdAt | date("h/m/Y") }}</small>
         </div>
-        <p class="mb-1"> {% autoescape  %} {{ subject.Content|raw }} {% endautoescape %}  </p>
+        <p class="mb-1"> {% autoescape %} {{ subject.Content|raw }} {% endautoescape %}  </p>
     </div>
     {% for comment in comments %} 
     <div class="list-group-item list-group-item-action">
         <div class="d-flex w-100 justify-content-between">
-            <h5 class="mb-1">{{ comment.getUser.username }}</h5>
+            <h5 class="mb-1">{{ comment.getUser.username }}</h5> <br>
             <small>
                 {% if is_granted("ROLE_ADMINISTRATOR") == true %}
                     {{ comment.createdAt | date("h/m/Y") }} <br>
-                    <a href="{{ path("removeComment", {"subjectId": subject.Id, "commentId": comment.Id }) }}">Supprimer</a>
+                    <a href="{{ path("removeComment", {"subjectId": subject.Id, "commentId": comment.Id }) }}">Supprimer</a> <br>
+                    <a href="{{ path("reportedComment", {"commentId": comment.Id, "subjectId": subject.Id}) }} ">Signaler</a>
                 {% elseif is_granted("ROLE_MODERATOR") == true %}
                     {{ comment.createdAt | date("h/m/Y") }} <br>
-                    <a href="{{ path("removeComment", {"subjectId": subject.Id, "commentId": comment.Id }) }}">Supprimer</a>
+                    <a href="{{ path("removeComment", {"subjectId": subject.Id, "commentId": comment.Id }) }}">Supprimer</a> <br>
+                    <a href="{{ path("reportedComment", {"commentId": comment.Id, "subjectId": subject.Id }) }} ">Signaler</a>
                 {% else %}
                     {{ comment.createdAt | date("h/m/Y") }} 
+                    <a href="{{ path("reportedComment", {"commentId": comment.Id, "subjectId": subject.Id }) }} ">Signaler</a>
                 {% endif %}
             </small>
         </div>
-        <p class="mb-1">  {{ comment.Content|raw }}  </p>
+        <p class="mb-1">  {{ comment.Content|raw }}              
+            {% if comment.report == 1 %}
+                Ce commentaire a été signalé, un modérateur s'en occupera prochainement. 
+            {% endif %}
+        </p>
     </div>
     {% endfor %} 
     {{ knp_pagination_render(comments) }} 

@@ -1,29 +1,52 @@
 {% extends "base.html.twig" %}
 
 {% block body %}
-
+{% if is_granted("ROLE_MODERATOR") or is_granted("ROLE_ADMINISTRATOR") %}
 <table class="table table-hover">
+    <thead>
+        <tr>
+            <th scope="col">Nom d'utilisateur</th>
+            <th scope="col">Email</th>
+            <th scope="col">Rôle</th>
+            <th scope="col">administration</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for users in user %}
+            <tr class="table-light forum-table">
+                <td> {{ users.username }} </td>
+                <td> {{ users.mail }}</td>
+                <td> {{ users.roles|join(', ', ' and ') }}</td>
+                <td> <a href=" {{ path("moderation_role_administrator", {"id": users.id}) }} "> administateur</a> | <a href=" {{ path("moderation_role_moderator", {"id": users.id}) }} "> moderateur</a></td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+<div id="Moderation-Title" > <h1>Commentaires signalés</h1> </div>
+    <table class="table table-hover">
         <thead>
             <tr>
-                <th scope="col">Nom d'utilisateur</th>
-                <th scope="col">Email</th>
-                <th scope="col">Rôle</th>
-                <th scope="col">administateur</th>
-                <th scope="col">moderateur</th>
+                <th scope="col"> Contenu du message </th>
+                <th scope="col"> Auteur </th>
+                <th scope="col"> Date de création </th>
+                <th scope="col"> Action</th>
             </tr>
         </thead>
         <tbody>
-            {% for users in user %}
-                <tr class="table-light forum-table">
-                    <td> {{ users.username }} </td>
-                    <td> {{ users.mail }}</td>
-                    <td> {{ users.roles|join(', ', ' and ') }}</td>
-                    <td> <a href=" {{ path("moderation_role_administrator", {"id": users.id}) }} "> administateur</a></td>
-                    <td> <a href=" {{ path("moderation_role_moderator", {"id": users.id}) }} "> moderateur</a></td>
-                </tr>
-            {% endfor %}
+        {% for comments in comment %}
+            <tr class="table-light forum-table"> 
+                <td> {{ comments.Content|striptags }} </td>
+                <td> {{ comments.User.Username }} </td>
+                <td> {{ comments.createdAt| date("h/m/y") }} </td>
+                <td> <a href="{{ path("removeReportedComment", {"commentId": comments.id}) }}">Supprimer</a> | <a href="{{ path("authorizedReportedComment", {"commentId": comments.id}) }}">Autoriser</a></td>
+            </tr>
+        {% endfor %}
         </tbody>
     </table>
+    {% else %}
+        <h1>Accés Interdit</h1>
 
+{% endif %}
 
 {% endblock %}

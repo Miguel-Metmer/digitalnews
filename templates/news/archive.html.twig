@@ -8,6 +8,9 @@
             <th scope="col">Source</th>
             <th scope="col">Liens</th>
             <th scope="col">Date de publication</th>
+            {% if is_granted("ROLE_ADMINISTRATOR") == true %}
+                <th scope="col">Ancienneté</th>
+            {% endif %}
         </tr>
     </thead>
     <tbody class="archive_list">
@@ -15,12 +18,24 @@
             <tr class="table table-light archive-table">
                 <td> {{ article.source }} </td>
                 <td> <a href=" {{ article.address }}"> {{ article.address|length > 60 ? article.address|slice(0, 60)~ '...' : article.address}} </td> 
-                <td> {{ article.published }} </td>
+                <td> {{ article.createdAt| date("d/m/Y") }} </td>
+                {% set diff = date(actualTime).diff(date(article.createdAt)) %}
+                {% if is_granted("ROLE_ADMINISTRATOR") == true %}
+                    <td> {{ diff | date("%m mois") }}</td>
+                {% endif %}
             </tr>
          {% endfor %}
     </tbody>
 </table>
-{{ knp_pagination_render(news) }} 
+ <div id="Pagination"> {{ knp_pagination_render(news) }} </div>
 
+
+{% if is_granted("ROLE_ADMINISTRATOR") == true %}
+<div class="jumbotron" id="Archives_Delete">
+    <h1>Administation</h1>
+    <h5>Supprimer archives vieilles d'un mois ?</h5>
+     <a class="btn btn-success" href="{{ path("removeOldArchives") }}"> Supprimer </a>
+</div>
+{% endif %}
 
 {% endblock %}

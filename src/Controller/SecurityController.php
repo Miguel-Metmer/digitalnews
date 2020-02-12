@@ -10,6 +10,7 @@ use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
 
 use App\Entity\Users;
+use App\Entity\Comments;
 use App\Form\RegistrationType;
 use App\Form\ConnexionType;
 
@@ -78,9 +79,18 @@ class SecurityController extends AbstractController
 
         $repo = $this->getDoctrine()->getRepository(Users::class);
 
+        $comment = new Comments();
+
+        $repoComments = $this->getDoctrine()->getRepository(Comments::class);
+
+        $comment = $repoComments->findBy([
+            "Report" => 1
+        ]);
+
         $user = $repo->findAll();
         return $this->render("security/moderation.html.twig", [
             "user" => $user,
+            "comment" => $comment
         ]);
     }
 
@@ -119,5 +129,6 @@ class SecurityController extends AbstractController
 
         return $this->redirectToRoute("moderation");
     }
+
 
 }

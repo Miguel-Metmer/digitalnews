@@ -38,6 +38,11 @@ class Comments
      */
     private $Subject;
 
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private $Report;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -87,6 +92,18 @@ class Comments
     public function setSubject(?Subjects $Subject): self
     {
         $this->Subject = $Subject;
+
+        return $this;
+    }
+
+    public function getReport(): ?bool
+    {
+        return $this->Report;
+    }
+
+    public function setReport(bool $Report): self
+    {
+        $this->Report = $Report;
 
         return $this;
     }

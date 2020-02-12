@@ -35,7 +35,9 @@
             {% for subject in subjects %}
                 <tr class="table-light forum-table">
                     <td><a href="{{ path("subject", {'id': subject.Id}) }}">{{subject.Title}}</a></td>
-                    <td> {{ subject.Content|length > 50 ?  subject.Content|striptags|slice(0,50) ~ '...' : subject.Content|raw }}   </td> 
+                    <td> 
+                       {% autoescape "html" %} {{  subject.Content|length > 50 ?  subject.Content|striptags|slice(0,50)|raw ~ '...' : subject.Content|striptags|raw }} {% endautoescape %}   
+                    </td> 
                     <td>{{ subject.getUser.username }}</td>
                     <td>{{ subject.createdAt | date('d/m/Y') }}</td>
                     {% if is_granted("ROLE_ADMINISTRATOR") == true %}

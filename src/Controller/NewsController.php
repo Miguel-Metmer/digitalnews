@@ -35,6 +35,8 @@ class NewsController extends AbstractController
 
         $server = $this->getDoctrine()->getRepository(News::class);
 
+       
+
         //Nouveautées globales
         foreach ($data->articles as $article)
         {
@@ -42,7 +44,7 @@ class NewsController extends AbstractController
             {
                 $news->setAddress($article->url);
                 $news->setSource($article->source->name);
-                $news->setPublished($article->publishedAt);
+                $news->setCreatedAt(new \Datetime());
                 $manager->flush();
                 $manager->clear();
             }
@@ -50,19 +52,43 @@ class NewsController extends AbstractController
             {
                 $news->setAddress($article->url);
                 $news->setSource($article->source->name);
-                $news->setPublished($article->publishedAt);
+                $news->setCreatedAt(new \Datetime());
                 $manager->persist($news);
                 $manager->flush();
                 $manager->clear();
             }
         }
 
+        $actualTime = new \DateTime();
 
         $articles = $server->findAll();
         $pagination = $paginator->paginate($articles, $request->query->getInt('page', 1), 15);
         return $this->render("news/archive.html.twig", [
             "news" => $pagination,
+            "actualTime" => $actualTime
         ]);
+    }
+
+    /**
+     * @Route("/archive/removeOldArchive", name="removeOldArchives")
+     */
+    public function removeOldArchives(EntityManagerInterface $manager)
+    {
+        $news = new News();
+        $repository = $this->getDoctrine()->getRepository(News::class);
+
+        $news = $repository->findAll();
+
+        foreach($news as $index)
+        {
+            $interval = \date_diff(new \DateTime(), $index->getCreatedAt());
+            if($interval->format("%m")  >= 1)
+            {
+                $manager->remove($index);
+                $manager->flush();
+            }
+        }
+        return $this->redirectToRoute("archive");
     }
 
      /**
@@ -122,6 +148,7 @@ class NewsController extends AbstractController
             $comments->setCreatedAt(new \DateTime());
             $comments->setUser($this->getUser());
             $comments->setSubject($subject = $repo->find($id));
+            $comments->setReport(0);
 
             $manager->persist($comments);
             $manager->flush();
@@ -163,5 +190,49 @@ class NewsController extends AbstractController
         return $this->redirectToRoute("subject", ["id" => $subjectId]);
     }
 
+    /**
+     * @Route("/forum/comment/reported/{subjectId}/{commentId}", name="reportedComment")
+     */
+    public function reportedComment($subjectId, $commentId, EntityManagerInterface $manager)
+    {
+        $comment = new Comments();
+        
+        $repository = $this->getDoctrine()->getRepository(Comments::class);
 
+        $comment = $repository->find($commentId);
+        $comment->setReport(1);
+        $manager->persist($comment);
+        $manager->flush();
+
+        return $this->redirectToRoute("subject", ["id" => $subjectId]);
+    }
+
+    /**
+     * @Route("/forum/comment/remove/{commentId}", name="removeReportedComment")
+     */
+    public function removeReportedComment(EntityManagerInterface $manager, $commentId)
+    {
+        $repository = $this->getDoctrine()->getRepository(Comments::class);
+        $comment = $repository->find($commentId);
+        $manager->remove($comment);
+        $manager->flush();
+        return $this->redirectToRoute("moderation");
+    }
+
+    /**
+     * @Route("/forum/comment/authorized/{commentId}", name="authorizedReportedComment")
+     */
+    public function authorizedReportedComment(EntityManagerInterface $manager,$commentId)
+    {
+        $comment = new Comments();
+        
+        $repository = $this->getDoctrine()->getRepository(Comments::class);
+
+        $comment = $repository->find($commentId);
+        $comment->setReport(0);
+        $manager->persist($comment);
+        $manager->flush();
+        return $this->redirectToRoute("moderation");
+    }
 }
+

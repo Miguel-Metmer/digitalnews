@@ -27,9 +27,9 @@ class News
     private $Source;
 
     /**
-     * @ORM\Column(type="string", length=100, nullable=true)
+     * @ORM\Column(type="datetime")
      */
-    private $Published;
+    private $createdAt;
 
     public function getId(): ?int
     {
@@ -60,14 +60,14 @@ class News
         return $this;
     }
 
-    public function getPublished(): ?string
+    public function getCreatedAt(): ?\DateTimeInterface
     {
-        return $this->Published;
+        return $this->createdAt;
     }
 
-    public function setPublished(?string $Published): self
+    public function setCreatedAt(\DateTimeInterface $createdAt): self
     {
-        $this->Published = $Published;
+        $this->createdAt = $createdAt;
 
         return $this;
     }

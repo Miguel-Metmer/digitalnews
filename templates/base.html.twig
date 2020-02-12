@@ -1,19 +1,20 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <meta charset="utf-8">
+        <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>News</title>
 
         <link href="https://stackpath.bootstrapcdn.com/bootswatch/4.4.1/flatly/bootstrap.min.css" rel="stylesheet" integrity="sha384-yrfSO0DBjS56u5M+SjWTyAHujrkiYVtRYh2dtB3yLQtUz3bodOeialO59u5lUCFF" crossorigin="anonymous">
         <script src="https://cdn.tiny.cloud/1/q8cuujk9dxdfvx8h0r2yqwbuldpa3uz5idabkje7qma4fl2a/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
         <link rel="stylesheet" href="/css/style.css">
+        <link rel="icon" type="image/png" href="/images/ico.png">
 
         {% block head %}{% endblock %}
     </head>
     <body>
-        <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-            <a id="Icon" class="navbar-brand" href="/">A&I</a>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-primary navbar-menu-top">
+            <a id="Icon" class="navbar-brand" href="/"> <img src="/images/ico.png" width="50px" height="50px" alt="icon"></a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -36,7 +37,7 @@
                 </ul>
             </div>
         </nav>
-
+        <div id="Back_To_Menu"> <a href="#"> <i class="fas fa-angle-double-up"></i>  </a> </div>
         {% block body %}{% endblock %}
 
         <footer>
