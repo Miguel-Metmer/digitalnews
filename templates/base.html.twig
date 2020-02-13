@@ -27,7 +27,7 @@
                     <li class="nav-item">
                         <a id="Forum" class="nav-link" href="/forum">Forum</a>
                     </li>
-                    {% if is_granted("ROLE_ADMINISTRATOR") == true %}
+                    {% if is_granted("ROLE_ADMINISTRATOR") or is_granted("ROLE_MODERATOR") %}
                         <li class="nav-item">
                             <a class="nav-link" href=" {{ path("moderation") }} ">Moderation</a>
                         </li>

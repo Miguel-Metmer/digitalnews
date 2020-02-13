@@ -36,7 +36,7 @@
                 <tr class="table-light forum-table">
                     <td><a href="{{ path("subject", {'id': subject.Id}) }}">{{subject.Title}}</a></td>
                     <td> 
-                       {% autoescape "html" %} {{  subject.Content|length > 50 ?  subject.Content|striptags|slice(0,50)|raw ~ '...' : subject.Content|striptags|raw }} {% endautoescape %}   
+                       {{  subject.Content|length > 50 ?  subject.Content|striptags|slice(0,50) ~ '...' : subject.Content|striptags|raw }}   
                     </td> 
                     <td>{{ subject.getUser.username }}</td>
                     <td>{{ subject.createdAt | date('d/m/Y') }}</td>

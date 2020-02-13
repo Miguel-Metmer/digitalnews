@@ -122,9 +122,14 @@ footer ul li
 }
 
 
-.forum-table td:nth-child(even)
+.forum-table td
 {
-    background-color: rgb(239, 251, 246);
+    background-color: rgb(238, 251, 255);
+}
+
+.table-hover .table-light:hover, .table-hover .table-light:hover>th, .table-hover .table-light:hover>td
+{
+    background-color:  rgb(238, 251, 255);
 }
 
 .pagination
@@ -140,9 +145,9 @@ footer ul li
     padding: 0.5% 1.0%;
 }
 
-.archive_list td:nth-child(odd)
+.archive_list td
 {
-    background-color: rgb(239, 251, 246);
+    background-color: rgb(238, 251, 255);
 }
 
 .list-group-item-action:hover
@@ -181,6 +186,11 @@ footer ul li
     margin-bottom: 3%;
 }
 
+.bg-light
+{
+    background-color: #6fa5ff1a !important;
+}
+
 
 @media all and (max-width : 900px)
 {
@@ -205,7 +215,8 @@ footer ul li
     {
         display: none;
     }
-    .forum-table
+
+    .forum-table, .archive-table
     {
         display: flex;
         flex-direction: column;
@@ -243,5 +254,87 @@ footer ul li
     .forum-form form
     {
         width: 100%;
+    }
+
+    .forum-form img
+    {
+        width: 75%;
+    }
+
+
+    #Moderation-Title h1
+    {
+        font-size: 2.0em;
+    }
+
+    .forum-table td
+    {
+        background-color: rgb(255, 255, 255);
+    }
+
+    .table-light th, .table-light td, .table-light thead th, .table-light tbody+tbody
+    {
+        border-color: white;
+    }
+
+    .table-hover .table-light:hover, .table-hover .table-light:hover>th, .table-hover .table-light:hover>td
+    {
+        background-color:  rgb(255, 255, 255);
+    }
+
+    #Back_To_Menu
+    {
+        width: 100%;
+        position: fixed;
+        color: red;
+        z-index: 1;
+        font-size: xx-large;
+        margin-left: 95%;
+        margin-top: 80%;
+    }
+
+    footer
+    {
+        background-color: #3E3F3A;
+        position: fixed;
+        bottom: 0;
+        width: 100%;
+    }
+
+    footer ul
+    {
+        display: flex;
+        padding: 0;
+        margin: 1.0%;
+        width: 50%;
+    }
+
+    footer ul li a
+    {
+
+        font-size: 1.5em;
+    }
+
+    .table
+    {
+        margin-bottom: 7%;
+    }
+
+    .archive_list td
+    {
+        background-color: rgb(255, 255, 255);
+    }
+
+    #Archives_Delete 
+    {
+        text-align: center;
+    }
+
+    #Archives_Delete h1
+    {
+        border-bottom: 1px solid black;
+        width: 100%;
+        margin: auto;
+        margin-bottom: 3%;
     }
 }

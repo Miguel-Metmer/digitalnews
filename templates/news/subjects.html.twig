@@ -39,7 +39,7 @@
                     <a href="{{ path("removeComment", {"subjectId": subject.Id, "commentId": comment.Id }) }}">Supprimer</a> <br>
                     <a href="{{ path("reportedComment", {"commentId": comment.Id, "subjectId": subject.Id }) }} ">Signaler</a>
                 {% else %}
-                    {{ comment.createdAt | date("h/m/Y") }} 
+                    {{ comment.createdAt | date("h/m/Y") }} <br>
                     <a href="{{ path("reportedComment", {"commentId": comment.Id, "subjectId": subject.Id }) }} ">Signaler</a>
                 {% endif %}
             </small>

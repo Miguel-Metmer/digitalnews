@@ -104,7 +104,7 @@ class NewsController extends AbstractController
      */
     public function forum(Request $request, EntityManagerInterface $manager, PaginatorInterface $paginator)
     {
-        $subject = new Subjects(); //On creer un formulaire vide.
+        $subject = new Subjects(); //On creer entitée.
 
         $form = $this->createForm(SubjectType::class, $subject); //On creer le form, $subject recevra les valeurs.
         $form->handleRequest($request); //Analyse de la requete
