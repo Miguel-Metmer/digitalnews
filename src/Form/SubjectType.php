@@ -6,6 +6,7 @@ use App\Entity\Subjects;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 
 
 class SubjectType extends AbstractType
@@ -14,7 +15,7 @@ class SubjectType extends AbstractType
     {
         $builder
             ->add('Title')
-            ->add('Content')
+            ->add('Content', TextareaType::class, array('required'=>false));
             //->add('createdAt')
         ;
     }
