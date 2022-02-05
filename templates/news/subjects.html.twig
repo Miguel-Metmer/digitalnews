@@ -60,7 +60,7 @@
             <p>Veuillez vous <a href="{{ path("security_connexion") }}"> connecter  </a>  pour commenter</p>
         </div>
     {% else %}
-       {{ form_start(form, {"attr": {"novalidate": "novalidate"}}) }}
+       {{ form_start(form) }}
             {{ form_row(form.Content) }}
             <div class="button-form">
                  <button type="submit" class="btn btn-success"> Creer </button>

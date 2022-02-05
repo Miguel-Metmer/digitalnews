@@ -57,7 +57,7 @@
         </div>
             
         {% else %}
-            {{ form_start(form, {"attr": {"novalidate": "novalidate"}}) }}
+            {{ form_start(form) }}
             {{ form_row(form.Title) }}
             {{ form_row(form.Content, {"attr": {"placeholder": "Test"}}) }}
             <div class="button-form">
